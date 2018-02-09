@@ -5,12 +5,12 @@
  */
 package alquilervehiculos.mvc.modelo;
 
+import alquilervehiculos.mvc.modelo.dao.Alquileres;
+import alquilervehiculos.mvc.modelo.dao.Clientes;
+import alquilervehiculos.mvc.modelo.dao.Turismos;
 import alquilervehiculos.mvc.modelo.dominio.Alquiler;
 import alquilervehiculos.mvc.modelo.dominio.Cliente;
-import alquilervehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 import alquilervehiculos.mvc.modelo.dominio.Turismo;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  *
@@ -18,206 +18,59 @@ import java.util.regex.Pattern;
  */
 public class AlquilerVehiculos {
 
-//Atributos    
-    private final int MAX_TURISMOS = 10;
-    private final int MAX_CLIENTES = 50;
-    private final int MAX_ALQUILERES = 10;
-    private Turismo[] turismos;
-    private Cliente[] clientes;
-    private Alquiler[] alquileres;
+    private Turismos turismos;
+    private Clientes clientes;
+    private Alquileres alquileres;
 
 //Constructor    
     public AlquilerVehiculos() {
-        turismos = new Turismo[MAX_TURISMOS];
-        clientes = new Cliente[MAX_CLIENTES];
-        alquileres = new Alquiler[MAX_ALQUILERES];
-    }
-//Constructor copia
-
-    public AlquilerVehiculos(AlquilerVehiculos alquilerVehiculosCopia) {
-        turismos = alquilerVehiculosCopia.getTurismos();
-        clientes = alquilerVehiculosCopia.getClientes();
-        alquileres = alquilerVehiculosCopia.getAlquileres();
+        turismos = new Turismos();
+        clientes = new Clientes();
+        alquileres = new Alquileres();
     }
 
-//Métodos get        
-    public Turismo[] getTurismos() {
-        Turismo[] turismosCopia = turismos.clone();
-        return turismosCopia;
+    public void anadirCliente(Cliente cliente) {
+        clientes.anadir(cliente);
     }
 
-    public Cliente[] getClientes() {
-        Cliente[] clientesCopia = clientes.clone();
-        return clientesCopia;
+    public void borrarCliente(String dni) {
+        clientes.borrar(dni);
     }
 
-    public Alquiler[] getAlquileres() {
-        Alquiler[] alquileresCopia = alquileres.clone();
-        return alquileresCopia;
+    public Cliente buscarCliente(String dni) {
+        return clientes.buscar(dni);
     }
 
-//Métodos cliente    
-    public Cliente getCliente(String dni) {
-        int contador = 0;
-        boolean buscador = false;
-        while (contador < clientes.length && !buscador) {
-            if (clientes[contador] != null && clientes[contador].getDni().equals(dni)) {
-                buscador = true;
-            } else {
-                contador++;
-            }
-        }
-        if (buscador) {
-            return clientes[contador];
-        } else {
-            return null;
-        }
-
+    public Cliente[] obtenerClientes() {
+        return clientes.getClientes();
     }
 
-    public void addCliente(Cliente cliente) {
-        int contador = 0;
-        boolean buscador = false;
-        while (contador < clientes.length && !buscador) {
-            if (clientes[contador] == null) {
-                buscador = true;
-            } else {
-                contador++;
-            }
-        }
-        if (buscador) {
-            clientes[contador] = cliente;
-        } else {
-            throw new ExcepcionAlquilerVehiculos("No hay espacio disponible.");
-        }
+    public void anadirTurismo(Turismo turismo) {
+        turismos.anadir(turismo);
     }
 
-    public void delCliente(String dni) {
-        if (!compruebaDni(dni)) throw new ExcepcionAlquilerVehiculos ("DNI incorrecto.");
-        int contador = 0;
-        boolean buscador = false;
-        while (contador < clientes.length && !buscador) {
-            if (clientes[contador] != null && clientes[contador].getDni().equals(dni)) {
-                buscador = true;
-            } else {
-                contador++;
-            }
-        }
-        if (buscador) {
-            for (int i = contador; i < clientes.length - 1; i++) {
-                clientes[i] = clientes[i + 1];
-            }
-            clientes[clientes.length - 1] = null;
-        } else {
-            throw new ExcepcionAlquilerVehiculos("Cliente no encontrado.");
-        }
+    public void borrarTurismo(String matricula) {
+        turismos.borrar(matricula);
     }
 
-//Métodos turismo    
-    public Turismo getTurismo(String matricula) {
-        int contador = 0;
-        boolean buscador = false;
-        while (contador < turismos.length && !buscador) {
-            if (turismos[contador] != null && turismos[contador].getMatricula().equals(matricula)) {
-                buscador = true;
-            } else {
-                contador++;
-            }
-        }
-        if (buscador) {
-            return turismos[contador];
-        } else {
-            return null;
-        }
-
+    public Turismo buscarTurismo(String matricula) {
+        return turismos.buscar(matricula);
     }
 
-    public void addTurismo(Turismo turismo) {
-        int contador = 0;
-        boolean buscador = false;
-        while (contador < turismos.length && !buscador) {
-            if (turismos[contador] == null) {
-                buscador = true;
-            } else {
-                contador++;
-            }
-            turismo.setDisponible(true);
-        }
-        if (buscador) {
-            turismos[contador] = turismo;
-        } else {
-            throw new ExcepcionAlquilerVehiculos("No hay espacio disponible.");
-        }
+    public Turismo[] obtenerTurismos() {
+        return turismos.getTurismos();
     }
 
-    public void delTurismo(String matricula) {
-        if (!compruebaMatricula(matricula)) throw new ExcepcionAlquilerVehiculos ("Matrícula incorrecta.");
-        int contador = 0;
-        boolean buscador = false;
-        while (contador < turismos.length && !buscador) {
-            if (turismos[contador] != null && turismos[contador].getMatricula().equals(matricula)) {
-                buscador = true;
-            } else {
-                contador++;
-            }
-        }
-        if (buscador) {
-            for (int i = contador; i < turismos.length - 1; i++) {
-                turismos[i] = turismos[i + 1];
-            }
-            turismos[turismos.length - 1] = null;
-        } else {
-            throw new ExcepcionAlquilerVehiculos("Vehículo no encontrado");
-        }
+    public void abrirAlquiler(Cliente cliente, Turismo turismo) {
+        alquileres.abrir(cliente, turismo);
     }
 
-//Metodos alquiler    
-    public void openAlquiler(Cliente cliente, Turismo turismo) {
-        int contador = 0;
-        boolean buscador = false;
-        while (contador < alquileres.length && !buscador) {
-            if (alquileres[contador] == null) {
-                buscador = true;
-            } else {
-                contador++;
-            }
-        }
-        if (buscador) {
-            alquileres[contador] = new Alquiler(cliente, turismo);
-            turismo.setDisponible(false);
-        } else {
-            throw new ExcepcionAlquilerVehiculos("No hay espacio disponible.");
-        }
-
+    public void cerrarAlquiler(Turismo turismo) {
+        alquileres.cerrar(turismo);
     }
 
-    public void closeAlquiler(Cliente cliente, Turismo turismo) {
-        int contador = 0;
-        boolean buscador = false;
-        while (contador < alquileres.length && !buscador) {
-            if (alquileres[contador] != null && alquileres[contador].getTurismo().getMatricula().equals(turismo.getMatricula())) {
-                buscador = true;
-            } else {
-                contador++;
-            }
+    public Alquiler[] obtenerAlquileres() {
+        return alquileres.getAlquileres();
+    }
 
-        }
-        if (buscador) {
-            alquileres[contador].close();
-            turismo.setDisponible(true);
-        } else {
-            throw new ExcepcionAlquilerVehiculos("Alquiler no encontrado.");
-        }
-
-    }
-        private boolean compruebaDni(String dni) {
-        Pattern regex = Pattern.compile("[0-9]{8}[a-z]{1}");
-        Matcher matcher = regex.matcher(dni);
-        return matcher.matches();
-    }
-        private boolean compruebaMatricula(String matricula) {
-        Pattern regex = Pattern.compile("[0-9]{4}[a-z]{3}");
-        Matcher matcher = regex.matcher(matricula);
-        return matcher.matches();
-    }
 }

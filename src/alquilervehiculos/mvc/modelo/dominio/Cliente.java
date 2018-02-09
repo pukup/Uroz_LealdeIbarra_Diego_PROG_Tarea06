@@ -81,7 +81,7 @@ public class Cliente {
 
 //Método toString    
     public String toString() {
-        return String.format("CLIENTE %n Nombre: %s%n Dirección: %s%n Dni: %s%n Identificador: %s%n", nombre, direccion.toString(), dni, identificador);
+        return String.format("CLIENTE %s%n Nombre: %s%n Dirección: %s Dni: %s%n",identificador, nombre, direccion.toString(), dni);
     }
 
 //Métodos de validación    

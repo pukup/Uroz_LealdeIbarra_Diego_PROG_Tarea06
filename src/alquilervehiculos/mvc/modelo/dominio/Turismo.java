@@ -52,7 +52,7 @@ public class Turismo {
 
     private void setModelo(String modelo) {
         if (modelo != null && !modelo.equals("")) {
-            this.marca = modelo;
+            this.modelo = modelo;
         } else {
             throw new ExcepcionAlquilerVehiculos("Formato modelo incorrecto.");
         }
@@ -103,7 +103,7 @@ public class Turismo {
 
 //Método toString    
     public String toString() {
-        return String.format("TURISMO %n Marca: %s%n Modelo: %s%n Cilindrada: %d%n Matrícula: %s%n Disponible: %b%n", marca, modelo, cilindrada, matricula, disponible);
+        return String.format("TURISMO %s%n Marca: %s%n Modelo: %s%n Cilindrada: %d%n Disponible: %b%n", matricula, marca, modelo, cilindrada, disponible);
     }
 
 //Método validación    

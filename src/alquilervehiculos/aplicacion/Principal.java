@@ -22,36 +22,36 @@ public class Principal {
     public static void main(String[] args) {
 
 //Prueba clase Cliente        
-        Cliente cliente0 = new Cliente("a", "00000000A", new DireccionPostal("", "", "00000"));
-        Cliente cliente1 = new Cliente("d", "99999999Z", new DireccionPostal("", "", "00000"));
+        Cliente cliente0 = new Cliente("a", "00000000A", new DireccionPostal("a", "a", "00000"));
+        Cliente cliente1 = new Cliente("z", "99999999Z", new DireccionPostal("z", "z", "00000"));
 
 //Prueba clase Turismo
-        Turismo turismo0 = new Turismo("0000ZZZ", "", "", 1);
-        Turismo turismo1 = new Turismo("9999ZZZ", "", "", 500);
+        Turismo turismo0 = new Turismo("0000BBB", "B", "B", 1);
+        Turismo turismo1 = new Turismo("9999ZZZ", "Z", "Z", 500);
 
 //Prueba clase AlquilerVehiculos        
         AlquilerVehiculos alquiler0 = new AlquilerVehiculos();
 
-        alquiler0.addCliente(cliente0);
-        alquiler0.addCliente(cliente1);
+        alquiler0.anadirCliente(cliente0);
+        alquiler0.anadirCliente(cliente1);
 
-        alquiler0.addTurismo(turismo0);
-        alquiler0.addTurismo(turismo1);
+        alquiler0.anadirTurismo(turismo0);
+        alquiler0.anadirTurismo(turismo1);
 
-        alquiler0.openAlquiler(cliente0, turismo0);
-        alquiler0.openAlquiler(cliente1, turismo1);
+        alquiler0.abrirAlquiler(cliente0, turismo0);
+        alquiler0.abrirAlquiler(cliente1, turismo1);
 
-        for (Cliente clienteArray : alquiler0.getClientes()) {
+        for (Cliente clienteArray : alquiler0.obtenerClientes()) {
             if (clienteArray != null) {
                 System.out.println(clienteArray.toString());
             }
         }
-        for (Turismo turismoArray : alquiler0.getTurismos()) {
+        for (Turismo turismoArray : alquiler0.obtenerTurismos()) {
             if (turismoArray != null) {
                 System.out.println(turismoArray.toString());
             }
         }
-        for (Alquiler alquilerArray : alquiler0.getAlquileres()) {
+        for (Alquiler alquilerArray : alquiler0.obtenerAlquileres()) {
             if (alquilerArray != null) {
                 System.out.println(alquilerArray.toString());
             }
@@ -63,10 +63,12 @@ public class Principal {
             System.out.println("--Elija una opción--");
             System.out.println("1.- Añadir cliente");
             System.out.println("2.- Borrar cliente");
+            System.out.println("3.- Buscar cliente");
             System.out.println("4.- Listar clientes");
             System.out.println("5.- Añadir turismo");
             System.out.println("6.- Borrar turismo");
-            System.out.println("7.- Listar turismo");
+            System.out.println("7.- Buscar turismo");
+            System.out.println("8.- Listar turismos");
             System.out.println("9.- Abrir alquiler");
             System.out.println("10.- Cerrar alquiler");
             System.out.println("11.- Listar alquileres");
@@ -84,7 +86,7 @@ public class Principal {
                         String nombre = Entrada.cadena();
                         System.out.print("Calle: ");
                         String calle = Entrada.cadena();
-                        System.out.println("Localidad: ");
+                        System.out.print("Localidad: ");
                         String localidad = Entrada.cadena();
                         System.out.print("Código postal: ");
                         String codigoPostal = Entrada.cadena();
@@ -99,7 +101,7 @@ public class Principal {
                     } while (nuevoCliente == null);
 
                     try {
-                        alquiler0.addCliente(nuevoCliente);
+                        alquiler0.anadirCliente(nuevoCliente);
                     } catch (ExcepcionAlquilerVehiculos e) {
                         System.out.println(e.getMessage());
                     }
@@ -110,7 +112,7 @@ public class Principal {
                     System.out.print("DNI: ");
                     String delDni = Entrada.cadena();
                     try {
-                        alquiler0.delCliente(delDni);
+                        alquiler0.borrarCliente(delDni);
                         System.out.println("Cliente eliminado \n");
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
@@ -119,16 +121,17 @@ public class Principal {
                 case 3:
                     System.out.print("DNI: ");
                     String searchDni = Entrada.cadena();
-                    Cliente clienteBuscado = alquiler0.getCliente(searchDni);
+                    Cliente clienteBuscado = alquiler0.buscarCliente(searchDni);
                     String mensaje = (clienteBuscado != null) ? clienteBuscado.toString() : "Cliente no encontrado. \n";
                     System.out.println(mensaje);
                     break;
 
                 case 4:
-                    for (Cliente clienteArray : alquiler0.getClientes()) {
-                        if (clienteArray != null) {
-                            System.out.println(clienteArray);
-                        }
+                    System.out.println("-CLIENTES-");
+                    int indice = 0;
+                    while (alquiler0.obtenerClientes()[indice] != null) {
+                        System.out.println(alquiler0.obtenerClientes()[indice]);
+                        indice++;
                     }
                     break;
 
@@ -144,7 +147,7 @@ public class Principal {
                     int cilindrada = Entrada.entero();
                     try {
                         nuevoVehiculo = new Turismo(matricula, marca, modelo, cilindrada);
-                        alquiler0.addTurismo(nuevoVehiculo);
+                        alquiler0.anadirTurismo(nuevoVehiculo);
                     } catch (ExcepcionAlquilerVehiculos e) {
                         System.out.println(e.getMessage());
                     }
@@ -154,7 +157,7 @@ public class Principal {
                     System.out.print("Matrícula: ");
                     String delMatricula = Entrada.cadena();
                     try {
-                        alquiler0.delTurismo(delMatricula);
+                        alquiler0.borrarTurismo(delMatricula);
                         System.out.println("Turismo eliminado \n");
                     } catch (ExcepcionAlquilerVehiculos e) {
                         System.out.println(e.getMessage());
@@ -164,32 +167,35 @@ public class Principal {
                 case 7:
                     System.out.print("Matrícula: ");
                     String searchMatricula = Entrada.cadena();
-                    Turismo vehiculoBuscado = alquiler0.getTurismo(searchMatricula);
-                    mensaje = (vehiculoBuscado != null) ? vehiculoBuscado.toString() : "Vehículo no encontrado. \n";
-                    System.out.println(mensaje);
+                    try {
+                        alquiler0.buscarTurismo(searchMatricula);
+                        System.out.println(alquiler0.buscarTurismo(searchMatricula));
+                    } catch (ExcepcionAlquilerVehiculos e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
 
                 case 8:
-                    for (Turismo turismoArray : alquiler0.getTurismos()) {
-                        if (turismoArray != null) {
-                            System.out.println(turismoArray);
-                        }
+                    System.out.println("-TURISMOS-");
+                    indice = 0;
+                    while (alquiler0.obtenerTurismos()[indice] != null) {
+                        System.out.println(alquiler0.obtenerTurismos()[indice]);
+                        indice++;
                     }
-
                     break;
 
                 case 9:
                     System.out.print("Matrícula: ");
                     searchMatricula = Entrada.cadena();
-                    vehiculoBuscado = alquiler0.getTurismo(searchMatricula);
+                    Turismo vehiculoBuscado = alquiler0.buscarTurismo(searchMatricula);
                     System.out.print("DNI: ");
                     searchDni = Entrada.cadena();
-                    clienteBuscado = alquiler0.getCliente(searchDni);
-                    if (vehiculoBuscado == null || clienteBuscado == null) {
-                        System.out.println("Matrícula o DNI no encontrados. \n");
+                    clienteBuscado = alquiler0.buscarCliente(searchDni);
+                    if (vehiculoBuscado == null || clienteBuscado == null || !vehiculoBuscado.getDisponible()) {
+                        System.out.println("Vehículo o cliente no disponibles. \n");
                     } else {
                         try {
-                            alquiler0.openAlquiler(clienteBuscado, vehiculoBuscado);
+                            alquiler0.abrirAlquiler(clienteBuscado, vehiculoBuscado);
                             System.out.println("Trabajo abierto. \n");
                         } catch (ExcepcionAlquilerVehiculos e) {
                             System.out.println(e.getMessage());
@@ -200,27 +206,25 @@ public class Principal {
                 case 10:
                     System.out.print("Matrícula: ");
                     searchMatricula = Entrada.cadena();
-                    vehiculoBuscado = alquiler0.getTurismo(searchMatricula);
-                    System.out.print("DNI: ");
-                    searchDni = Entrada.cadena();
-                    clienteBuscado = alquiler0.getCliente(searchDni);
-                    if (vehiculoBuscado == null || clienteBuscado == null) {
-                        System.out.println("Vehículo o cliente no encontrados. \n");
+                    vehiculoBuscado = alquiler0.buscarTurismo(searchMatricula);
+                    if (vehiculoBuscado == null || !vehiculoBuscado.getDisponible()) {
+                        System.out.println("Vehículo no disponible. \n");
                     } else {
                         try {
-                            alquiler0.closeAlquiler(clienteBuscado, vehiculoBuscado);
-                            System.out.println("Trabajo cerrado. \n");
+                            alquiler0.cerrarAlquiler(vehiculoBuscado);
+                            System.out.println("Alquiler cerrado. \n");
                         } catch (ExcepcionAlquilerVehiculos e) {
                             System.out.println(e.getMessage());
                         }
                     }
                     break;
 
-                case 12:
-                    for (Alquiler alquilerArray : alquiler0.getAlquileres()) {
-                        if (alquilerArray != null) {
-                            System.out.println(alquilerArray);
-                        }
+                case 11:
+                    System.out.println("-ALQUILERES-");
+                    indice = 0;
+                    while (alquiler0.obtenerAlquileres()[indice] != null) {
+                        System.out.println(alquiler0.obtenerAlquileres()[indice].toString());
+                        indice++;
                     }
                     break;
 

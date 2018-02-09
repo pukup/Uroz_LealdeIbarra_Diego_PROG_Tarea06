@@ -17,6 +17,7 @@ public class Alquiler {
 //Atributos    
     private Date fecha;
     private int dias;
+    private boolean alquilerAbierto;
     private final SimpleDateFormat FORMATO_FECHA = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     private final int MS_DIA = 1000 * 60 * 60 * 24;
     private final double PRECIO_DIA = 30;
@@ -26,11 +27,12 @@ public class Alquiler {
 //Constructor    
     public Alquiler(Cliente cliente, Turismo turismo) {
         if (turismo.getDisponible()) {
-            this.cliente = cliente;
-            this.turismo = turismo;
-            fecha = new Date();
-            dias = 0;
             turismo.setDisponible(false);
+            alquilerAbierto = true;
+            setTurismo(turismo);
+            setCliente(cliente);
+            fecha = new Date();
+            dias = 0;               
         } else {
             throw new ExcepcionAlquilerVehiculos("Vehículo no disponible.");
         }
@@ -42,6 +44,7 @@ public class Alquiler {
         cliente = alquilerCopia.getCliente();
         dias = alquilerCopia.getDias();
         fecha = alquilerCopia.getDate();
+        
     }
 
     private void setTurismo(Turismo turismo) {
@@ -88,17 +91,23 @@ public class Alquiler {
     public double getPrecio(Turismo turismo, int dias) {
         return PRECIO_DIA * dias + turismo.getCilindrada() / 100;
     }
+    
+    public String getEstadoAlquiler(){
+        String mensaje = alquilerAbierto ? "ABIERTO":"CERRADO";
+        return mensaje;
+    }
 
 //Método toString    
     public String toString() {
-        return String.format("ALQUILER %n Fecha inicio: %s%n Días: %d%n Turismo: %s%n Cliente: %s%n Precio: %f€%n", fecha.toString(), getDias(), turismo.getMatricula(), cliente.getDni(), getPrecio());
+        return String.format("ALQUILER %s%n Fecha inicio: %s%n Días: %d%n Turismo: %s%n Cliente: %s%n Precio: %f€%n", getEstadoAlquiler(), fecha.toString(), getDias(), turismo.getMatricula(), cliente.getDni(), getPrecio());
     }
 
 //Método cerrar alquiler   
-    public void close() {
+    public void close() {         
         if (dias == 0) {
             dias = difDias();
             turismo.setDisponible(true);
+            alquilerAbierto = false;
         } else {
             throw new ExcepcionAlquilerVehiculos("El alquiler está cerrado");
         }

@@ -22,12 +22,12 @@ public class Principal {
     public static void main(String[] args) {
 
 //Prueba clase Cliente        
-        Cliente cliente0 = new Cliente("a", "00000000A", new DireccionPostal("", "", ""));
-        Cliente cliente1 = new Cliente("d", "99999999Z", new DireccionPostal("", "", ""));
+        Cliente cliente0 = new Cliente("a", "00000000A", new DireccionPostal("", "", "00000"));
+        Cliente cliente1 = new Cliente("d", "99999999Z", new DireccionPostal("", "", "00000"));
 
 //Prueba clase Turismo
-        Turismo turismo0 = new Turismo("0000aaa", "", "", 1);
-        Turismo turismo1 = new Turismo("9999zzz", "", "", 500);
+        Turismo turismo0 = new Turismo("0000ZZZ", "", "", 1);
+        Turismo turismo1 = new Turismo("9999ZZZ", "", "", 500);
 
 //Prueba clase AlquilerVehiculos        
         AlquilerVehiculos alquiler0 = new AlquilerVehiculos();

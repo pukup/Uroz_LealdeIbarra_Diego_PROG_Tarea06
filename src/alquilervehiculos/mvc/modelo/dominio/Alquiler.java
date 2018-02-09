@@ -35,7 +35,7 @@ public class Alquiler {
             throw new ExcepcionAlquilerVehiculos("Vehículo no disponible.");
         }
     }
-    
+
 //Constructor copia
     public Alquiler(Alquiler alquilerCopia) {
         turismo = alquilerCopia.getTurismo();
@@ -44,7 +44,23 @@ public class Alquiler {
         fecha = alquilerCopia.getDate();
     }
 
+    private void setTurismo(Turismo turismo) {
+        if (turismo != null) {
+            this.turismo = new Turismo(turismo);
+        } else {
+            throw new ExcepcionAlquilerVehiculos("Error turismo.");
+        }
+    }
+    
+    private void setCliente(Cliente cliente) {
+        if (cliente != null) {
+            this.cliente = new Cliente(cliente);
+        } else {
+            throw new ExcepcionAlquilerVehiculos("Error cliente.");
+        }
+    }
 //Métodos get    
+
     public Date getDate() {
         return fecha;
     }
@@ -82,6 +98,7 @@ public class Alquiler {
     public void close() {
         if (dias == 0) {
             dias = difDias();
+            turismo.setDisponible(true);
         } else {
             throw new ExcepcionAlquilerVehiculos("El alquiler está cerrado");
         }

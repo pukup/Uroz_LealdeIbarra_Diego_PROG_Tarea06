@@ -22,13 +22,9 @@ public class Cliente {
 
 //Constructor
     public Cliente(String nombre, String dni, DireccionPostal direccion) {
-        this.nombre = nombre;
-        this.direccion = direccion;
-        if (compruebaDni(dni)) {
-            this.dni = dni;
-        } else {
-            throw new ExcepcionAlquilerVehiculos("DNI incorrecto.");
-        }
+        setNombre(nombre);
+        setDireccionPostal(direccion);
+        setDni(dni);
         ultimoIdentificador++;
         identificador = ultimoIdentificador;
     }
@@ -39,6 +35,27 @@ public class Cliente {
         direccion = clienteCopia.getDireccion();
         dni = clienteCopia.getDni();
         identificador = clienteCopia.getIdentificador();
+    }
+
+//Métodos set    
+    private void setNombre(String nombre) {
+        if (nombre != null && !nombre.equals("")) {
+            this.nombre = nombre;
+        } else {
+            throw new ExcepcionAlquilerVehiculos("Nombre incorrecto.");
+        }
+    }
+
+    private void setDni(String dni) {
+        if (compruebaDni(dni)) {
+            this.dni = dni;
+        } else {
+            throw new ExcepcionAlquilerVehiculos("DNI incorrecto.");
+        }
+    }
+
+    private void setDireccionPostal(DireccionPostal direccion) {
+        this.direccion = new DireccionPostal(direccion);
     }
 
 //Métodos get   
@@ -69,7 +86,7 @@ public class Cliente {
 
 //Métodos de validación    
     private boolean compruebaDni(String dni) {
-        Pattern regex = Pattern.compile("[0-9]{8}[a-z]{1}");
+        Pattern regex = Pattern.compile("[0-9]{8}[A-Z]{1}");
         Matcher matcher = regex.matcher(dni);
         return matcher.matches();
     }

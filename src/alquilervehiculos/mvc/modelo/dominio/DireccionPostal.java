@@ -18,13 +18,9 @@ public class DireccionPostal {
 
     public DireccionPostal(String calle, String localidad, String codigoPostal) {
 
-        this.calle = calle;
-        this.localidad = localidad;
-        if (compruebaCodigoPostal(codigoPostal)) {
-            this.codigoPostal = codigoPostal;
-        } else {
-            throw new ExcepcionAlquilerVehiculos("Código Postal no válido");
-        }
+        setCalle(calle);
+        setLocalidad(localidad);
+        setCodigoPostal(codigoPostal);
     }
 
     public DireccionPostal(DireccionPostal direccionCopia) {
@@ -33,28 +29,40 @@ public class DireccionPostal {
         codigoPostal = direccionCopia.getCodigoPostal();
     }
 
+    private void setCalle(String calle){
+        if (calle != null && !calle.equals("")){
+            this.calle = calle;
+        } else {
+            throw new ExcepcionAlquilerVehiculos ("Formato calle incorrecto.");
+        }
+    }
+    
+    private void setLocalidad(String localidad){
+        if (localidad != null && !localidad.equals("")){
+            this.calle = localidad;
+        } else {
+            throw new ExcepcionAlquilerVehiculos ("Formato localidad incorrecto.");
+        }
+    }
+    
+    private void setCodigoPostal(String codigoPostal){
+        if (compruebaCodigoPostal(codigoPostal)){
+            this.calle = codigoPostal;
+        } else {
+            throw new ExcepcionAlquilerVehiculos ("Formato código postal incorrecto.");
+        }
+    }
+    
     public String getCalle() {
         return calle;
-    }
-
-    public void setCalle(String calle) {
-        this.calle = calle;
     }
 
     public String getLocalidad() {
         return localidad;
     }
 
-    public void setLocalidad(String localidad) {
-        this.localidad = localidad;
-    }
-
     public String getCodigoPostal() {
         return codigoPostal;
-    }
-
-    public void setCodigoPostal(String codigoPostal) {
-        this.codigoPostal = codigoPostal;
     }
 
     public String toString(){

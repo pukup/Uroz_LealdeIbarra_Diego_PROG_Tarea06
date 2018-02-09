@@ -14,27 +14,20 @@ import java.util.regex.Pattern;
  */
 public class Turismo {
 
-
 //Atributos clase
     private String matricula, marca, modelo;
     private int cilindrada;
     private boolean disponible;
 
 //Constructor        
-    public Turismo(String matricula, String marca, String modelo, int cilindrada){
-                
-        this.marca=marca;
-        this.modelo=modelo;
-        if (cilindrada > 0 )
-            this.cilindrada=cilindrada;
-        else
-            throw new ExcepcionAlquilerVehiculos("No se admite esa cilindrada.");
-        if(compruebaMatricula(matricula))
-            this.matricula=matricula;
-        else
-            throw new ExcepcionAlquilerVehiculos("Matrícula incorrecta.");
-        disponible=true;
-        
+    public Turismo(String matricula, String marca, String modelo, int cilindrada) {
+
+        setMarca(marca);
+        setModelo(modelo);
+        setCilindrada(cilindrada);
+        setMatricula(matricula);
+        disponible = true;
+
     }
 
 //Constructor copia    
@@ -44,9 +37,43 @@ public class Turismo {
         modelo = turismoCopia.getModelo();
         cilindrada = turismoCopia.getCilindrada();
         matricula = turismoCopia.getMatricula();
-        disponible= turismoCopia.getDisponible();
-        
+        disponible = turismoCopia.getDisponible();
+
     }
+
+//Métodos set
+    private void setMarca(String marca) {
+        if (marca != null && !marca.equals("")) {
+            this.marca = marca;
+        } else {
+            throw new ExcepcionAlquilerVehiculos("Formato marca incorrecto.");
+        }
+    }
+
+    private void setModelo(String modelo) {
+        if (modelo != null && !modelo.equals("")) {
+            this.marca = modelo;
+        } else {
+            throw new ExcepcionAlquilerVehiculos("Formato modelo incorrecto.");
+        }
+    }
+
+    private void setCilindrada(int cilindrada1) {
+        if (cilindrada1 > 0) {
+            this.cilindrada = cilindrada1;
+        } else {
+            throw new ExcepcionAlquilerVehiculos("Formato modelo incorrecto.");
+        }
+    }
+
+    private void setMatricula(String matricula1) {
+        if (compruebaMatricula(matricula1)) {
+            this.matricula = matricula1;
+        } else {
+            throw new ExcepcionAlquilerVehiculos("Matrícula incorrecta.");
+        }
+    }
+    
 
 //Métodos get
     public String getMarca() {
@@ -68,7 +95,7 @@ public class Turismo {
     public boolean getDisponible() {
         return disponible;
     }
-    
+
 // Método set disponible
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
@@ -81,7 +108,7 @@ public class Turismo {
 
 //Método validación    
     private boolean compruebaMatricula(String matricula) {
-        Pattern regex = Pattern.compile("[0-9]{4}[a-z]{3}");
+        Pattern regex = Pattern.compile("[0-9]{4}[B-DF-HJ-NP-TV-Z]{3}");
         Matcher matcher = regex.matcher(matricula);
         return matcher.matches();
     }

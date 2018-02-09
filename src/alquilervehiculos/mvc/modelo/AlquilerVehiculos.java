@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tarea05;
+package alquilervehiculos.mvc.modelo;
 
+import alquilervehiculos.mvc.modelo.dominio.Alquiler;
+import alquilervehiculos.mvc.modelo.dominio.Cliente;
+import alquilervehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
+import alquilervehiculos.mvc.modelo.dominio.Turismo;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

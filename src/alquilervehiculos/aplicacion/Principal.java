@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package aplicacion;
+package alquilervehiculos.aplicacion;
 
-import tarea05.Alquiler;
-import tarea05.AlquilerVehiculos;
-import tarea05.Cliente;
-import tarea05.ExcepcionAlquilerVehiculos;
-import tarea05.Turismo;
-import utilidades.Entrada;
+import alquilervehiculos.mvc.modelo.dominio.Alquiler;
+import alquilervehiculos.mvc.modelo.AlquilerVehiculos;
+import alquilervehiculos.mvc.modelo.dominio.Cliente;
+import alquilervehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
+import alquilervehiculos.mvc.modelo.dominio.Turismo;
+import alquilervehiculos.mvc.vista.utilidades.Entrada;
 
 /**
  *

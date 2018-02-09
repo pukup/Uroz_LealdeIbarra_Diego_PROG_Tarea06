@@ -8,6 +8,7 @@ package alquilervehiculos.aplicacion;
 import alquilervehiculos.mvc.modelo.dominio.Alquiler;
 import alquilervehiculos.mvc.modelo.AlquilerVehiculos;
 import alquilervehiculos.mvc.modelo.dominio.Cliente;
+import alquilervehiculos.mvc.modelo.dominio.DireccionPostal;
 import alquilervehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 import alquilervehiculos.mvc.modelo.dominio.Turismo;
 import alquilervehiculos.mvc.vista.utilidades.Entrada;
@@ -21,8 +22,8 @@ public class Principal {
     public static void main(String[] args) {
 
 //Prueba clase Cliente        
-        Cliente cliente0 = new Cliente("a", "b", "c", "00000", "00000000a");
-        Cliente cliente1 = new Cliente("d", "e", "f", "99999", "99999999z");
+        Cliente cliente0 = new Cliente("a", "00000000A", new DireccionPostal("", "", ""));
+        Cliente cliente1 = new Cliente("d", "99999999Z", new DireccionPostal("", "", ""));
 
 //Prueba clase Turismo
         Turismo turismo0 = new Turismo("0000aaa", "", "", 1);
@@ -71,8 +72,8 @@ public class Principal {
             System.out.println("11.- Listar alquileres");
             System.out.println("0.- Salir");
 
-            do{
-                            selector = Entrada.entero();
+            do {
+                selector = Entrada.entero();
             } while (selector < 0 || selector > 11);
 
             switch (selector) {
@@ -81,8 +82,8 @@ public class Principal {
                     do {
                         System.out.print("Nombre: ");
                         String nombre = Entrada.cadena();
-                        System.out.print("Dirección: ");
-                        String direccion = Entrada.cadena();
+                        System.out.print("Calle: ");
+                        String calle = Entrada.cadena();
                         System.out.println("Localidad: ");
                         String localidad = Entrada.cadena();
                         System.out.print("Código postal: ");
@@ -90,7 +91,7 @@ public class Principal {
                         System.out.print("DNI: ");
                         String dni = Entrada.cadena();
                         try {
-                            nuevoCliente = new Cliente(nombre, direccion, localidad, codigoPostal, dni);
+                            nuevoCliente = new Cliente(nombre, dni, new DireccionPostal(calle, localidad, codigoPostal));
                         } catch (ExcepcionAlquilerVehiculos e) {
                             System.out.println(e.getMessage());
                             System.out.println("Los datos introducidos son incorrectos. \n");
@@ -222,11 +223,11 @@ public class Principal {
                         }
                     }
                     break;
-                    
+
                 default:
                     break;
             }
-            
+
         } while (selector != 0);
 
     }

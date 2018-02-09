@@ -15,20 +15,15 @@ import java.util.regex.Pattern;
 public class Cliente {
 
 // Atributos para la clase
-    private String nombre, direccion, localidad, codigoPostal, dni;
+    private String nombre, dni;
+    private DireccionPostal direccion;
     private int identificador;
     private static int ultimoIdentificador = 0;
 
 //Constructor
-    public Cliente(String nombre, String direccion, String localidad, String codigoPostal, String dni) {
+    public Cliente(String nombre, String dni, DireccionPostal direccion) {
         this.nombre = nombre;
         this.direccion = direccion;
-        this.localidad = localidad;
-        if (compruebaCodigoPostal(codigoPostal)) {
-            this.codigoPostal = codigoPostal;
-        } else {
-            throw new ExcepcionAlquilerVehiculos("Código postal incorrecto.");
-        }
         if (compruebaDni(dni)) {
             this.dni = dni;
         } else {
@@ -42,8 +37,6 @@ public class Cliente {
     public Cliente(Cliente clienteCopia) {
         nombre = clienteCopia.getNombre();
         direccion = clienteCopia.getDireccion();
-        localidad = clienteCopia.getLocalidad();
-        codigoPostal = clienteCopia.getCodigoPostal();
         dni = clienteCopia.getDni();
         identificador = clienteCopia.getIdentificador();
     }
@@ -53,16 +46,8 @@ public class Cliente {
         return nombre;
     }
 
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public String getLocalidad() {
-        return localidad;
-    }
-
-    public String getCodigoPostal() {
-        return codigoPostal;
+    public DireccionPostal getDireccion() {
+        return new DireccionPostal(direccion);
     }
 
     public String getDni() {
@@ -79,16 +64,10 @@ public class Cliente {
 
 //Método toString    
     public String toString() {
-        return String.format("CLIENTE %n Nombre: %s%n Dirección: %s%n Localidad: %s%n Código postal: %s%n Dni: %s%n Identificador: %s%n", nombre, direccion, localidad, codigoPostal, dni, identificador);
+        return String.format("CLIENTE %n Nombre: %s%n Dirección: %s%n Dni: %s%n Identificador: %s%n", nombre, direccion.toString(), dni, identificador);
     }
 
 //Métodos de validación    
-    private boolean compruebaCodigoPostal(String codigoPostal) {
-        Pattern regex = Pattern.compile("[0-9]{5}");
-        Matcher matcher = regex.matcher(codigoPostal);
-        return matcher.matches();
-    }
-
     private boolean compruebaDni(String dni) {
         Pattern regex = Pattern.compile("[0-9]{8}[a-z]{1}");
         Matcher matcher = regex.matcher(dni);

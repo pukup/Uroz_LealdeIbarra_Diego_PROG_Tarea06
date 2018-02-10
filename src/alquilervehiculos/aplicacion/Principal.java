@@ -37,25 +37,10 @@ public class Principal {
 
         alquiler0.anadirTurismo(turismo0);
         alquiler0.anadirTurismo(turismo1);
-
+        
+        System.out.println(turismo0.hashCode());
         alquiler0.abrirAlquiler(cliente0, turismo0);
         alquiler0.abrirAlquiler(cliente1, turismo1);
-
-        for (Cliente clienteArray : alquiler0.obtenerClientes()) {
-            if (clienteArray != null) {
-                System.out.println(clienteArray.toString());
-            }
-        }
-        for (Turismo turismoArray : alquiler0.obtenerTurismos()) {
-            if (turismoArray != null) {
-                System.out.println(turismoArray.toString());
-            }
-        }
-        for (Alquiler alquilerArray : alquiler0.obtenerAlquileres()) {
-            if (alquilerArray != null) {
-                System.out.println(alquilerArray.toString());
-            }
-        }
 
 //Menu selcción        
         int selector;

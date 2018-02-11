@@ -10,6 +10,7 @@ import alquilervehiculos.mvc.modelo.dao.Clientes;
 import alquilervehiculos.mvc.modelo.dao.Turismos;
 import alquilervehiculos.mvc.modelo.dominio.Alquiler;
 import alquilervehiculos.mvc.modelo.dominio.Cliente;
+import alquilervehiculos.mvc.modelo.dominio.DireccionPostal;
 import alquilervehiculos.mvc.modelo.dominio.Turismo;
 
 /**
@@ -73,4 +74,24 @@ public class AlquilerVehiculos {
         return alquileres.getAlquileres();
     }
 
+    public void anadirDatosPrueba() {
+        Cliente cliente0 = new Cliente("a", "00000000A", new DireccionPostal("a", "a", "00000"));
+        Cliente cliente1 = new Cliente("z", "99999999Z", new DireccionPostal("z", "z", "00000"));
+
+//Prueba clase Turismo
+        Turismo turismo0 = new Turismo("0000BBB", "B", "B", 1);
+        Turismo turismo1 = new Turismo("9999ZZZ", "Z", "Z", 500);
+
+//Prueba clase AlquilerVehiculos        
+        AlquilerVehiculos alquiler0 = new AlquilerVehiculos();
+
+        alquiler0.anadirCliente(cliente0);
+        alquiler0.anadirCliente(cliente1);
+
+        alquiler0.anadirTurismo(turismo0);
+        alquiler0.anadirTurismo(turismo1);
+
+        alquiler0.abrirAlquiler(cliente0, turismo0);
+        alquiler0.abrirAlquiler(cliente1, turismo1);
+    }
 }

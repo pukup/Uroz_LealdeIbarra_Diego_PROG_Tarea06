@@ -5,7 +5,9 @@
  */
 package alquilervehiculos.mvc.vista;
 
+import alquilervehiculos.mvc.controlador.ControladorAlquilerTurismos;
 import alquilervehiculos.mvc.modelo.dominio.Cliente;
+import alquilervehiculos.mvc.vista.utilidades.Consola;
 
 /**
  *
@@ -13,15 +15,24 @@ import alquilervehiculos.mvc.modelo.dominio.Cliente;
  */
 public class IUTextual {
     
+    ControladorAlquilerTurismos controlador;
+    
     public IUTextual(){
-        
+        Opcion.setVista(this);
     }
     
-    public void setControlador(){
-        
+    public void setControlador(ControladorAlquilerTurismos controlador){
+        this.controlador = controlador;
     }
     
     public void comenzar(){
+        int ordinalOpcion;
+        do {
+            Consola.mostrarMenu();
+            ordinalOpcion = Consola.elegirOpcion();
+            Opcion opcion = Opcion.getOpcionSegunOrdinal(ordinalOpcion);
+            opcion.ejecutar();
+        } while (ordinalOpcion != Opcion.SALIR.ordinal());
         
     }
     
@@ -30,6 +41,7 @@ public class IUTextual {
     }
     
     public void anadirCliente(){
+        Consola.mostrarCabecera("Añadir cliente.");
         
     }
     

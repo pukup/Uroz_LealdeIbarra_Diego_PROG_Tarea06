@@ -9,6 +9,7 @@ import alquilervehiculos.mvc.modelo.dominio.Cliente;
 import alquilervehiculos.mvc.modelo.dominio.DireccionPostal;
 import alquilervehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 import alquilervehiculos.mvc.modelo.dominio.Turismo;
+import alquilervehiculos.mvc.vista.Opcion;
 
 /**
  *
@@ -21,31 +22,27 @@ public class Consola {
     }
 
     public static void mostrarMenu() {
-
+        mostrarCabecera("Alquiler vehículos");
+        for (Opcion value : Opcion.values()) {
+            System.out.println(value);
+        }
     }
 
-    public static void mostrarCabecera() {
-
+    public static void mostrarCabecera(String mensaje) {
+        System.out.printf("%n%s%n", mensaje);
+        System.out.println(String.format("%0", mensaje.length() + "d%n", 0).replace("0", "-"));
     }
 
     public static int elegirOpcion() {
-        int opcion = 0;
-        return opcion;
+        int ordinalOpcion;
+        do {
+            System.out.println("Elija una opción.");
+            ordinalOpcion = Entrada.entero();
+        } while (!Opcion.ordinalValido(ordinalOpcion));
+        return ordinalOpcion;
     }
 
-    public static String leerDni() {
-        System.out.println("Introduzca DNI.");
-        String dni = Entrada.cadena();
-        return dni;
-    }
-
-    public static String leerMatricula() {
-        System.out.println("Introduzca Matrícula.");
-        String matricula = Entrada.cadena();
-        return matricula;
-    }
-
-    public static Cliente leerCliente() {
+        public static Cliente leerCliente() {
         Cliente cliente = null;
         System.out.print("Nombre: ");
         String nombre = Entrada.cadena();
@@ -64,8 +61,14 @@ public class Consola {
         }
         return cliente;
     }
-
-    public static Turismo leerTurismo() {
+        
+    public static String leerDni() {
+        System.out.println("Introduzca DNI.");
+        String dni = Entrada.cadena();
+        return dni;
+    }
+    
+        public static Turismo leerTurismo() {
         Turismo turismo = null;
         System.out.print("Matrícula: ");
         String matricula = Entrada.cadena();
@@ -84,5 +87,11 @@ public class Consola {
         }
         return turismo;
     }
-    
+
+    public static String leerMatricula() {
+        System.out.println("Introduzca Matrícula.");
+        String matricula = Entrada.cadena();
+        return matricula;
+    }
+
 }

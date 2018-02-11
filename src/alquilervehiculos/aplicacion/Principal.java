@@ -38,7 +38,7 @@ public class Principal {
         alquiler0.anadirTurismo(turismo0);
         alquiler0.anadirTurismo(turismo1);
         
-        System.out.println(turismo0.hashCode());
+
         alquiler0.abrirAlquiler(cliente0, turismo0);
         alquiler0.abrirAlquiler(cliente1, turismo1);
 

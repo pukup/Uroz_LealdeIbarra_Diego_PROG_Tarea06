@@ -27,7 +27,6 @@ public class Alquiler {
 //Constructor    
     public Alquiler(Cliente cliente, Turismo turismo) {
         if (turismo.getDisponible()) {
-            turismo.setDisponible(false);
             alquilerAbierto = true;
             setTurismo(turismo);
             setCliente(cliente);
@@ -49,7 +48,8 @@ public class Alquiler {
 
     private void setTurismo(Turismo turismo) {
         if (turismo != null) {
-            this.turismo = new Turismo(turismo);
+            this.turismo = turismo;
+            turismo.setDisponible(false);
         } else {
             throw new ExcepcionAlquilerVehiculos("Error turismo.");
         }
@@ -57,7 +57,7 @@ public class Alquiler {
     
     private void setCliente(Cliente cliente) {
         if (cliente != null) {
-            this.cliente = new Cliente(cliente);
+            this.cliente = cliente;
         } else {
             throw new ExcepcionAlquilerVehiculos("Error cliente.");
         }

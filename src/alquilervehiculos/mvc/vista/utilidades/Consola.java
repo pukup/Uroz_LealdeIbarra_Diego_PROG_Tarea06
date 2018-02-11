@@ -30,7 +30,7 @@ public class Consola {
 
     public static void mostrarCabecera(String mensaje) {
         System.out.printf("%n%s%n", mensaje);
-        System.out.println(String.format("%0", mensaje.length() + "d%n", 0).replace("0", "-"));
+        System.out.println(String.format("%0" + mensaje.length() + "d%n", 0).replace("0", "-"));
     }
 
     public static int elegirOpcion() {
@@ -42,8 +42,9 @@ public class Consola {
         return ordinalOpcion;
     }
 
-        public static Cliente leerCliente() {
+    public static Cliente leerCliente() {
         Cliente cliente = null;
+        DireccionPostal direccion = null;
         System.out.print("Nombre: ");
         String nombre = Entrada.cadena();
         System.out.print("Calle: ");
@@ -55,20 +56,25 @@ public class Consola {
         System.out.print("DNI: ");
         String dni = Entrada.cadena();
         try {
-            cliente = new Cliente(nombre, dni, new DireccionPostal(calle, localidad, codigoPostal));
+            direccion = new DireccionPostal(calle, localidad, codigoPostal);
+        } catch (ExcepcionAlquilerVehiculos e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            cliente = new Cliente(nombre, dni, direccion);
         } catch (ExcepcionAlquilerVehiculos e) {
             System.out.println(e.getMessage());
         }
         return cliente;
     }
-        
+
     public static String leerDni() {
         System.out.println("Introduzca DNI.");
         String dni = Entrada.cadena();
         return dni;
     }
-    
-        public static Turismo leerTurismo() {
+
+    public static Turismo leerTurismo() {
         Turismo turismo = null;
         System.out.print("Matrícula: ");
         String matricula = Entrada.cadena();

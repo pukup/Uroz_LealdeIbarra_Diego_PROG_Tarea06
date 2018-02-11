@@ -37,7 +37,7 @@ public class Turismos {
     public void anadir(Turismo turismo) {
         int indice = buscarPrimerIndiceLibreComprobandoExistencia(turismo);
         if (indiceNoSuperaTamano(indice)) {
-            turismos[indice] = new Turismo(turismo);
+            turismos[indice] = turismo;
         } else {
             throw new ExcepcionAlquilerVehiculos("Array de turismos sin espacio.");
         }

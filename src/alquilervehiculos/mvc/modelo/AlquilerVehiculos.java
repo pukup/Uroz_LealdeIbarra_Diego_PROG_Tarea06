@@ -78,20 +78,16 @@ public class AlquilerVehiculos {
         Cliente cliente0 = new Cliente("a", "00000000A", new DireccionPostal("a", "a", "00000"));
         Cliente cliente1 = new Cliente("z", "99999999Z", new DireccionPostal("z", "z", "00000"));
 
-//Prueba clase Turismo
         Turismo turismo0 = new Turismo("0000BBB", "B", "B", 1);
         Turismo turismo1 = new Turismo("9999ZZZ", "Z", "Z", 500);
 
-//Prueba clase AlquilerVehiculos        
-        AlquilerVehiculos alquiler0 = new AlquilerVehiculos();
+        anadirCliente(cliente0);
+        anadirCliente(cliente1);
 
-        alquiler0.anadirCliente(cliente0);
-        alquiler0.anadirCliente(cliente1);
+        anadirTurismo(turismo0);
+        anadirTurismo(turismo1);
 
-        alquiler0.anadirTurismo(turismo0);
-        alquiler0.anadirTurismo(turismo1);
-
-        alquiler0.abrirAlquiler(cliente0, turismo0);
-        alquiler0.abrirAlquiler(cliente1, turismo1);
+        abrirAlquiler(cliente0, turismo0);
+        abrirAlquiler(cliente1, turismo1);
     }
 }

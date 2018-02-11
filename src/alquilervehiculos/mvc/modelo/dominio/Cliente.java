@@ -23,8 +23,8 @@ public class Cliente {
 //Constructor
     public Cliente(String nombre, String dni, DireccionPostal direccion) {
         setNombre(nombre);
-        setDireccionPostal(direccion);
         setDni(dni);
+        setDireccionPostal(direccion);
         ultimoIdentificador++;
         identificador = ultimoIdentificador;
     }
@@ -54,8 +54,8 @@ public class Cliente {
         }
     }
 
-    private void setDireccionPostal(DireccionPostal direccion) {
-        this.direccion = new DireccionPostal(direccion);
+    private void setDireccionPostal(DireccionPostal direccion) {        
+            this.direccion = new DireccionPostal(direccion);       
     }
 
 //Métodos get   
@@ -81,7 +81,7 @@ public class Cliente {
 
 //Método toString    
     public String toString() {
-        return String.format("CLIENTE %s%n Nombre: %s%n Dirección: %s Dni: %s%n",identificador, nombre, direccion.toString(), dni);
+        return String.format("CLIENTE %s%n Nombre: %s%n Dni: %s%n %s", identificador, nombre, dni, direccion);
     }
 
 //Métodos de validación    

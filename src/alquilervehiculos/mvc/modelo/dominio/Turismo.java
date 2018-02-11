@@ -26,7 +26,7 @@ public class Turismo {
         setModelo(modelo);
         setCilindrada(cilindrada);
         setMatricula(matricula);
-        disponible = true;
+        setDisponible(true);
 
     }
 
@@ -74,6 +74,9 @@ public class Turismo {
         }
     }
     
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
 
 //Métodos get
     public String getMarca() {
@@ -94,11 +97,6 @@ public class Turismo {
 
     public boolean getDisponible() {
         return disponible;
-    }
-
-// Método set disponible
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
     }
 
 //Método toString    

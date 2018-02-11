@@ -39,7 +39,7 @@ public class DireccionPostal {
     
     private void setLocalidad(String localidad){
         if (localidad != null && !localidad.equals("")){
-            this.calle = localidad;
+            this.localidad = localidad;
         } else {
             throw new ExcepcionAlquilerVehiculos ("Formato localidad incorrecto.");
         }
@@ -47,7 +47,7 @@ public class DireccionPostal {
     
     private void setCodigoPostal(String codigoPostal){
         if (compruebaCodigoPostal(codigoPostal)){
-            this.calle = codigoPostal;
+            this.codigoPostal = codigoPostal;
         } else {
             throw new ExcepcionAlquilerVehiculos ("Formato código postal incorrecto.");
         }

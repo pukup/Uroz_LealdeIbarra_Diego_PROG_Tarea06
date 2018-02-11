@@ -20,7 +20,7 @@ public class ControladorAlquilerTurismos {
     private AlquilerVehiculos modelo;
     private IUTextual vista;
 
-    public void ControladorAlquilerTurismos(AlquilerVehiculos modelo, IUTextual vista) {
+    public ControladorAlquilerTurismos(AlquilerVehiculos modelo, IUTextual vista) {
         this.modelo = modelo;
         this.vista = vista;
         vista.setControlador(this);
@@ -28,6 +28,7 @@ public class ControladorAlquilerTurismos {
 
     public void comenzar() {
         modelo.anadirDatosPrueba();
+        vista.comenzar();
     }
 
     public void anadirCliente(Cliente cliente) {
@@ -38,8 +39,8 @@ public class ControladorAlquilerTurismos {
         modelo.borrarCliente(dni);
     }
 
-    public void buscarCliente(String dni) {
-        modelo.buscarCliente(dni);
+    public Cliente buscarCliente(String dni) {
+        return modelo.buscarCliente(dni);
     }
 
     public Cliente[] obtenerClientes() {
@@ -54,8 +55,8 @@ public class ControladorAlquilerTurismos {
         modelo.borrarTurismo(matricula);
     }
 
-    public void buscarTurismo(String matricula) {
-        modelo.buscarTurismo(matricula);
+    public Turismo buscarTurismo(String matricula) {
+        return modelo.buscarTurismo(matricula);
     }
 
     public Turismo[] obtenerTurismos() {

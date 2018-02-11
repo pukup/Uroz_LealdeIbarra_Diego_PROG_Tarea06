@@ -36,8 +36,8 @@ public class Clientes {
 
     public void anadir(Cliente cliente) {
         int indice = buscarPrimerIndiceLibreComprobandoExistencia(cliente);
-        if (indiceNoSuperaTamano(indice)) {
-            clientes[indice] = new Cliente(cliente);
+        if (indiceNoSuperaTamano(indice)) {                                       
+            clientes[indice] = cliente;                                    
         } else {
             throw new ExcepcionAlquilerVehiculos("El array de clientes está lleno.");
         }

@@ -11,7 +11,7 @@ import alquilervehiculos.mvc.modelo.dao.Turismos;
 import alquilervehiculos.mvc.modelo.dominio.Alquiler;
 import alquilervehiculos.mvc.modelo.dominio.Cliente;
 import alquilervehiculos.mvc.modelo.dominio.DireccionPostal;
-import alquilervehiculos.mvc.modelo.dominio.Turismo;
+import alquilervehiculos.mvc.modelo.dominio.vehiculo.Vehiculo;
 
 /**
  *
@@ -46,7 +46,7 @@ public class AlquilerVehiculos {
         return clientes.getClientes();
     }
 
-    public void anadirTurismo(Turismo turismo) {
+    public void anadirTurismo(Vehiculo turismo) {
         turismos.anadir(turismo);
     }
 
@@ -54,19 +54,19 @@ public class AlquilerVehiculos {
         turismos.borrar(matricula);
     }
 
-    public Turismo buscarTurismo(String matricula) {
+    public Vehiculo buscarTurismo(String matricula) {
         return turismos.buscar(matricula);
     }
 
-    public Turismo[] obtenerTurismos() {
+    public Vehiculo[] obtenerTurismos() {
         return turismos.getTurismos();
     }
 
-    public void abrirAlquiler(Cliente cliente, Turismo turismo) {
+    public void abrirAlquiler(Cliente cliente, Vehiculo turismo) {
         alquileres.abrir(cliente, turismo);
     }
 
-    public void cerrarAlquiler(Turismo turismo) {
+    public void cerrarAlquiler(Vehiculo turismo) {
         alquileres.cerrar(turismo);
     }
 
@@ -78,8 +78,8 @@ public class AlquilerVehiculos {
         Cliente cliente0 = new Cliente("a", "00000000A", new DireccionPostal("a", "a", "00000"));
         Cliente cliente1 = new Cliente("z", "99999999Z", new DireccionPostal("z", "z", "00000"));
 
-        Turismo turismo0 = new Turismo("0000BBB", "B", "B", 1);
-        Turismo turismo1 = new Turismo("9999ZZZ", "Z", "Z", 500);
+        Vehiculo turismo0 = new Vehiculo("0000BBB", "B", "B", 1);
+        Vehiculo turismo1 = new Vehiculo("9999ZZZ", "Z", "Z", 500);
 
         anadirCliente(cliente0);
         anadirCliente(cliente1);

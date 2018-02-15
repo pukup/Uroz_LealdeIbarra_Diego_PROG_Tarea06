@@ -8,7 +8,7 @@ package alquilervehiculos.mvc.controlador;
 import alquilervehiculos.mvc.modelo.AlquilerVehiculos;
 import alquilervehiculos.mvc.modelo.dominio.Alquiler;
 import alquilervehiculos.mvc.modelo.dominio.Cliente;
-import alquilervehiculos.mvc.modelo.dominio.Turismo;
+import alquilervehiculos.mvc.modelo.dominio.vehiculo.Vehiculo;
 import alquilervehiculos.mvc.vista.IUTextual;
 
 /**
@@ -47,7 +47,7 @@ public class ControladorAlquilerTurismos {
         return modelo.obtenerClientes();
     }
 
-    public void anadirTurismo(Turismo turismo) {
+    public void anadirTurismo(Vehiculo turismo) {
         modelo.anadirTurismo(turismo);
     }
 
@@ -55,19 +55,19 @@ public class ControladorAlquilerTurismos {
         modelo.borrarTurismo(matricula);
     }
 
-    public Turismo buscarTurismo(String matricula) {
+    public Vehiculo buscarTurismo(String matricula) {
         return modelo.buscarTurismo(matricula);
     }
 
-    public Turismo[] obtenerTurismos() {
+    public Vehiculo[] obtenerTurismos() {
         return modelo.obtenerTurismos();
     }
 
-    public void abrirAlquiler(Cliente cliente, Turismo turismo) {
+    public void abrirAlquiler(Cliente cliente, Vehiculo turismo) {
         modelo.abrirAlquiler(cliente, turismo);
     }
 
-    public void cerrarAlquiler(Turismo turismo) {
+    public void cerrarAlquiler(Vehiculo turismo) {
         modelo.cerrarAlquiler(turismo);
     }
 

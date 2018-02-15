@@ -10,7 +10,7 @@ import alquilervehiculos.mvc.modelo.AlquilerVehiculos;
 import alquilervehiculos.mvc.modelo.dominio.Cliente;
 import alquilervehiculos.mvc.modelo.dominio.DireccionPostal;
 import alquilervehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
-import alquilervehiculos.mvc.modelo.dominio.Turismo;
+import alquilervehiculos.mvc.modelo.dominio.vehiculo.Vehiculo;
 import alquilervehiculos.mvc.vista.IUTextual;
 
 /**

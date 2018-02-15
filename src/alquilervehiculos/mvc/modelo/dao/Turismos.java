@@ -6,7 +6,7 @@
 package alquilervehiculos.mvc.modelo.dao;
 
 import alquilervehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
-import alquilervehiculos.mvc.modelo.dominio.Turismo;
+import alquilervehiculos.mvc.modelo.dominio.vehiculo.Vehiculo;
 
 /**
  *
@@ -14,27 +14,27 @@ import alquilervehiculos.mvc.modelo.dominio.Turismo;
  */
 public class Turismos {
 
-    private Turismo[] turismos;
+    private Vehiculo[] turismos;
     private final int MAX_TURISMOS = 20;
 
     public Turismos() {
-        turismos = new Turismo[MAX_TURISMOS];
+        turismos = new Vehiculo[MAX_TURISMOS];
     }
 
-    public Turismo[] getTurismos() {
+    public Vehiculo[] getTurismos() {
         return turismos.clone();
     }
 
-    public Turismo buscar(String matricula) {
+    public Vehiculo buscar(String matricula) {
         int indice = buscarIndiceTurismo(matricula);
         if (indiceNoSuperaTamano(indice)) {
-            return new Turismo(turismos[indice]);
+            return new Vehiculo(turismos[indice]);
         } else {
             return null;
         }
     }
 
-    public void anadir(Turismo turismo) {
+    public void anadir(Vehiculo turismo) {
         int indice = buscarPrimerIndiceLibreComprobandoExistencia(turismo);
         if (indiceNoSuperaTamano(indice)) {
             turismos[indice] = turismo;
@@ -69,7 +69,7 @@ public class Turismos {
         return indice < turismos.length;
     }
 
-    private int buscarPrimerIndiceLibreComprobandoExistencia(Turismo turismo) {
+    private int buscarPrimerIndiceLibreComprobandoExistencia(Vehiculo turismo) {
         int indice = 0;
         boolean vehiculoEncontrado = false;
         while (indiceNoSuperaTamano(indice) && !vehiculoEncontrado) {

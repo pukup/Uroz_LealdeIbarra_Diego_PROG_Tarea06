@@ -8,7 +8,7 @@ package alquilervehiculos.mvc.modelo.dao;
 import alquilervehiculos.mvc.modelo.dominio.Alquiler;
 import alquilervehiculos.mvc.modelo.dominio.Cliente;
 import alquilervehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
-import alquilervehiculos.mvc.modelo.dominio.Turismo;
+import alquilervehiculos.mvc.modelo.dominio.vehiculo.Vehiculo;
 
 /**
  *
@@ -27,7 +27,7 @@ public class Alquileres {
         return alquileres.clone();
     }
 
-    public void abrir(Cliente cliente, Turismo turismo) {
+    public void abrir(Cliente cliente, Vehiculo turismo) {
         int indice = buscarPrimerIndiceLibreComprobandoExistenciaOtroAbierto(turismo);
         if (indiceNoSuperaTamano(indice)) {
             alquileres[indice] = new Alquiler(cliente, turismo);
@@ -36,7 +36,7 @@ public class Alquileres {
         }
     }
 
-    private int buscarPrimerIndiceLibreComprobandoExistenciaOtroAbierto(Turismo turismo) {
+    private int buscarPrimerIndiceLibreComprobandoExistenciaOtroAbierto(Vehiculo turismo) {
         int indice = 0;
         boolean trabajoEncontrado = false;
         while (indiceNoSuperaTamano(indice) && !trabajoEncontrado) {
@@ -55,7 +55,7 @@ public class Alquileres {
         return indice < alquileres.length;
     }
 
-    public void cerrar(Turismo turismo) {
+    public void cerrar(Vehiculo turismo) {
         int indice = buscarAlquilerAbierto(turismo);
         if (indiceNoSuperaTamano(indice)) {
             alquileres[indice].close();
@@ -64,7 +64,7 @@ public class Alquileres {
         }
     }
 
-    public int buscarAlquilerAbierto(Turismo turismo) {
+    public int buscarAlquilerAbierto(Vehiculo turismo) {
         int indice = 0;
         boolean alquilerEncontrado = false;
         while (indiceNoSuperaTamano(indice) && !alquilerEncontrado) {

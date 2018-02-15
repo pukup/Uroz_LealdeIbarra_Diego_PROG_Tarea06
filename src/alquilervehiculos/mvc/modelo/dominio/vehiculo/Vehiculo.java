@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package alquilervehiculos.mvc.modelo.dominio;
+package alquilervehiculos.mvc.modelo.dominio.vehiculo;
 
+import alquilervehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,7 +13,7 @@ import java.util.regex.Pattern;
  *
  * @author lol
  */
-public class Turismo {
+public class Vehiculo {
 
 //Atributos clase
     private String matricula, marca, modelo;
@@ -20,7 +21,7 @@ public class Turismo {
     private boolean disponible;
 
 //Constructor        
-    public Turismo(String matricula, String marca, String modelo, int cilindrada) {
+    public Vehiculo(String matricula, String marca, String modelo, int cilindrada) {
 
         setMarca(marca);
         setModelo(modelo);
@@ -31,7 +32,7 @@ public class Turismo {
     }
 
 //Constructor copia    
-    public Turismo(Turismo turismoCopia) {
+    public Vehiculo(Vehiculo turismoCopia) {
 
         marca = turismoCopia.getMarca();
         modelo = turismoCopia.getModelo();
@@ -62,7 +63,7 @@ public class Turismo {
         if (cilindrada1 > 0) {
             this.cilindrada = cilindrada1;
         } else {
-            throw new ExcepcionAlquilerVehiculos("Formato modelo incorrecto.");
+            throw new ExcepcionAlquilerVehiculos("Cilindrada incorrecta.");
         }
     }
 
@@ -101,7 +102,7 @@ public class Turismo {
 
 //Método toString    
     public String toString() {
-        return String.format("TURISMO %s%n Marca: %s%n Modelo: %s%n Cilindrada: %d%n Disponible: %b%n", matricula, marca, modelo, cilindrada, disponible);
+        return String.format("VEHICULO %s%n Marca: %s%n Modelo: %s%n Cilindrada: %d%n Disponible: %b%n", matricula, marca, modelo, cilindrada, disponible);
     }
 
 //Método validación    

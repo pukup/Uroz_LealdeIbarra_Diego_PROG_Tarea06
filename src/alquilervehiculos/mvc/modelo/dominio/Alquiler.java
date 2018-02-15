@@ -5,6 +5,7 @@
  */
 package alquilervehiculos.mvc.modelo.dominio;
 
+import alquilervehiculos.mvc.modelo.dominio.vehiculo.Vehiculo;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,11 +22,11 @@ public class Alquiler {
     private final SimpleDateFormat FORMATO_FECHA = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     private final int MS_DIA = 1000 * 60 * 60 * 24;
     private final double PRECIO_DIA = 30;
-    private Turismo turismo;
+    private Vehiculo turismo;
     private Cliente cliente;
 
 //Constructor    
-    public Alquiler(Cliente cliente, Turismo turismo) {
+    public Alquiler(Cliente cliente, Vehiculo turismo) {
         if (turismo.getDisponible()) {
             alquilerAbierto = true;
             setTurismo(turismo);
@@ -46,7 +47,7 @@ public class Alquiler {
         
     }
 
-    private void setTurismo(Turismo turismo) {
+    private void setTurismo(Vehiculo turismo) {
         if (turismo != null) {
             this.turismo = turismo;
             turismo.setDisponible(false);
@@ -72,8 +73,8 @@ public class Alquiler {
         return difDias();
     }
 
-    public Turismo getTurismo() {
-        return new Turismo(turismo);
+    public Vehiculo getTurismo() {
+        return new Vehiculo(turismo);
     }
 
     public double getPrecioDia() {
@@ -88,7 +89,7 @@ public class Alquiler {
         return PRECIO_DIA * difDias() + turismo.getCilindrada() / 100;
     }
 
-    public double getPrecio(Turismo turismo, int dias) {
+    public double getPrecio(Vehiculo turismo, int dias) {
         return PRECIO_DIA * dias + turismo.getCilindrada() / 100;
     }
     

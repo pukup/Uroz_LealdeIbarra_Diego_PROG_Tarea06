@@ -8,7 +8,7 @@ package alquilervehiculos.mvc.vista.utilidades;
 import alquilervehiculos.mvc.modelo.dominio.Cliente;
 import alquilervehiculos.mvc.modelo.dominio.DireccionPostal;
 import alquilervehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
-import alquilervehiculos.mvc.modelo.dominio.Turismo;
+import alquilervehiculos.mvc.modelo.dominio.vehiculo.Vehiculo;
 import alquilervehiculos.mvc.vista.Opcion;
 
 /**
@@ -16,10 +16,6 @@ import alquilervehiculos.mvc.vista.Opcion;
  * @author lol
  */
 public class Consola {
-
-    public Consola() {
-
-    }
 
     public static void mostrarMenu() {
         mostrarCabecera("Alquiler vehículos");
@@ -43,8 +39,6 @@ public class Consola {
     }
 
     public static Cliente leerCliente() {
-        Cliente cliente = null;
-        DireccionPostal direccion = null;
         System.out.print("Nombre: ");
         String nombre = Entrada.cadena();
         System.out.print("Calle: ");
@@ -55,16 +49,7 @@ public class Consola {
         String codigoPostal = Entrada.cadena();
         System.out.print("DNI: ");
         String dni = Entrada.cadena();
-        try {
-            direccion = new DireccionPostal(calle, localidad, codigoPostal);
-        } catch (ExcepcionAlquilerVehiculos e) {
-            System.out.println(e.getMessage());
-        }
-        try {
-            cliente = new Cliente(nombre, dni, direccion);
-        } catch (ExcepcionAlquilerVehiculos e) {
-            System.out.println(e.getMessage());
-        }
+        Cliente cliente = new Cliente(nombre, dni, new DireccionPostal(calle, localidad, codigoPostal));
         return cliente;
     }
 
@@ -74,23 +59,18 @@ public class Consola {
         return dni;
     }
 
-    public static Turismo leerTurismo() {
-        Turismo turismo = null;
+    public static Vehiculo leerTurismo() {
         System.out.print("Matrícula: ");
         String matricula = Entrada.cadena();
         System.out.print("Marca: ");
         String marca = Entrada.cadena();
         System.out.print("Modelo: ");
         String modelo = Entrada.cadena();
-        System.out.println("Color: ");
+        System.out.print("Color: ");
         String color = Entrada.cadena();
         System.out.print("Cilindrada: ");
         int cilindrada = Entrada.entero();
-        try {
-            turismo = new Turismo(matricula, marca, modelo, cilindrada);
-        } catch (ExcepcionAlquilerVehiculos e) {
-            System.out.printf(e.getMessage());
-        }
+        Vehiculo turismo = new Vehiculo(matricula, marca, modelo, cilindrada);
         return turismo;
     }
 

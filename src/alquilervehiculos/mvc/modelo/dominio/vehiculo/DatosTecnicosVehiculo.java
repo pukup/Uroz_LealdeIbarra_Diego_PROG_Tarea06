@@ -13,9 +13,9 @@ import alquilervehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
  */
 public class DatosTecnicosVehiculo {
 
-    private double cilindrada, numeroPlazas, pma;
+    private int cilindrada, numeroPlazas, pma;
 
-    public DatosTecnicosVehiculo(double cilindrada, double numeroPlazas, double pma) {
+    public DatosTecnicosVehiculo(int cilindrada, int numeroPlazas, int pma) {
 
         setCilindrada(cilindrada);
         setNumeroPlazas(numeroPlazas);
@@ -29,7 +29,7 @@ public class DatosTecnicosVehiculo {
         pma=datosTecnicos.getPma();
     }
     
-    private void setCilindrada(double cilindrada) {
+    private void setCilindrada(int cilindrada) {
         if (cilindrada > 0) {
             this.cilindrada = cilindrada;
         } else {
@@ -37,7 +37,7 @@ public class DatosTecnicosVehiculo {
         }
     }
 
-    private void setNumeroPlazas(double numeroPlazas) {
+    private void setNumeroPlazas(int numeroPlazas) {
         if (numeroPlazas > 0) {
             this.numeroPlazas = numeroPlazas;
         } else {
@@ -45,7 +45,7 @@ public class DatosTecnicosVehiculo {
         }
     }
 
-    private void setPma(double pma) {
+    private void setPma(int pma) {
         if (pma > 0) {
             this.pma = pma;
         } else {
@@ -53,15 +53,15 @@ public class DatosTecnicosVehiculo {
         }
     }
 
-    public double getCilindrada() {
+    public int getCilindrada() {
         return cilindrada;
     }
 
-    public double getNumeroPlazas() {
+    public int getNumeroPlazas() {
         return numeroPlazas;
     }
 
-    public double getPma() {
+    public int getPma() {
         return pma;
     }
     

@@ -17,20 +17,22 @@ public class Vehiculo {
 
 //Atributos clase
     private String matricula, marca, modelo;
+    private DatosTecnicosVehiculo datosTecnicos;
     private boolean disponible;
-    private final double FACTOR_CILINDRADA, FACTOR_NUMERO_PLAZAS, FACTOR_PMA;
+    private final double FACTOR_CILINDRADA = 50;
+    private final double FACTOR_NUMERO_PLAZAS = 1;
+    private final double FACTOR_PMA = 20;
 
+    
+    
 //Constructor        
     public Vehiculo(String matricula, String marca, String modelo, DatosTecnicosVehiculo datosTecnicos) {
 
         setMatricula(matricula);
         setMarca(marca);
         setModelo(modelo);
-        FACTOR_CILINDRADA = datosTecnicos.getCilindrada();
-        FACTOR_NUMERO_PLAZAS = datosTecnicos.getNumeroPlazas();
-        FACTOR_PMA = datosTecnicos.getPma();
+        this.datosTecnicos = datosTecnicos;
         setDisponible(true);
-
     }
 
 //Constructor copia    
@@ -39,9 +41,7 @@ public class Vehiculo {
         matricula = turismoCopia.getMatricula();
         marca = turismoCopia.getMarca();
         modelo = turismoCopia.getModelo();
-        FACTOR_CILINDRADA = turismoCopia.getFACTOR_CILINDRADA();
-        FACTOR_NUMERO_PLAZAS = turismoCopia.getFACTOR_NUMERO_PLAZAS();
-        FACTOR_PMA = turismoCopia.getFACTOR_PMA();
+        datosTecnicos = turismoCopia.datosTecnicos;
         disponible = turismoCopia.getDisponible();
 
     }
@@ -114,12 +114,12 @@ public class Vehiculo {
     }
 
     public DatosTecnicosVehiculo getDatosTecnicos() {
-        return new DatosTecnicosVehiculo(FACTOR_CILINDRADA, FACTOR_NUMERO_PLAZAS, FACTOR_PMA);
+        return new DatosTecnicosVehiculo(datosTecnicos);
     }
 
 //Método toString    
     public String toString() {
-        return String.format("VEHICULO %s%n Marca: %s%n Modelo: %s%n  %d%n Disponible: %b%n", matricula, marca, modelo, getDatosTecnicos().toString(), disponible);
+        return String.format("VEHICULO %s%n Marca: %s%n Modelo: %s%n  %s%n Disponible: %b%n", matricula, marca, modelo, datosTecnicos, disponible);
     }
 
 //Método validación    

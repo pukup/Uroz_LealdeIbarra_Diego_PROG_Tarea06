@@ -68,11 +68,11 @@ public class Consola {
         System.out.print("Modelo: ");
         String modelo = Entrada.cadena();
         System.out.print("Cilindrada: ");
-        double cilindrada = Entrada.realDoble();
+        int cilindrada = Entrada.entero();
         System.out.print("Número de plazas: ");
-        double numeroPlazas = Entrada.realDoble();   
+        int numeroPlazas = Entrada.entero();   
         System.out.print("PMA: ");
-        double pma = Entrada.realDoble(); 
+        int pma = Entrada.entero(); 
         Vehiculo turismo = new Vehiculo(matricula, marca, modelo, new DatosTecnicosVehiculo (cilindrada,numeroPlazas,pma));
         return turismo;
     }

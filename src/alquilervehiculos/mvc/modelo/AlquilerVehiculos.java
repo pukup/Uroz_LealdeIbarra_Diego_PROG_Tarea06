@@ -11,6 +11,7 @@ import alquilervehiculos.mvc.modelo.dao.Turismos;
 import alquilervehiculos.mvc.modelo.dominio.Alquiler;
 import alquilervehiculos.mvc.modelo.dominio.Cliente;
 import alquilervehiculos.mvc.modelo.dominio.DireccionPostal;
+import alquilervehiculos.mvc.modelo.dominio.vehiculo.DatosTecnicosVehiculo;
 import alquilervehiculos.mvc.modelo.dominio.vehiculo.Vehiculo;
 
 /**
@@ -78,8 +79,8 @@ public class AlquilerVehiculos {
         Cliente cliente0 = new Cliente("a", "00000000A", new DireccionPostal("a", "a", "00000"));
         Cliente cliente1 = new Cliente("z", "99999999Z", new DireccionPostal("z", "z", "00000"));
 
-        Vehiculo turismo0 = new Vehiculo("0000BBB", "B", "B", 1);
-        Vehiculo turismo1 = new Vehiculo("9999ZZZ", "Z", "Z", 500);
+        Vehiculo turismo0 = new Vehiculo("0000BBB", "B", "B", new DatosTecnicosVehiculo(1, 1, 1));
+        Vehiculo turismo1 = new Vehiculo("9999ZZZ", "Z", "Z", new DatosTecnicosVehiculo(500, 500, 500));
 
         anadirCliente(cliente0);
         anadirCliente(cliente1);

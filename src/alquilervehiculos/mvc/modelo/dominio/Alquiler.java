@@ -86,11 +86,11 @@ public class Alquiler {
     }
 
     public double getPrecio() {
-        return PRECIO_DIA * difDias() + turismo.getCilindrada() / 100;
+        return PRECIO_DIA * difDias() + turismo.getDatosTecnicos().getCilindrada() / 100;
     }
 
     public double getPrecio(Vehiculo turismo, int dias) {
-        return PRECIO_DIA * dias + turismo.getCilindrada() / 100;
+        return PRECIO_DIA * dias + turismo.getDatosTecnicos().getCilindrada() / 100;
     }
     
     public String getEstadoAlquiler(){

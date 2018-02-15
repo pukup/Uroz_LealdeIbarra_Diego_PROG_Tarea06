@@ -8,6 +8,7 @@ package alquilervehiculos.mvc.vista.utilidades;
 import alquilervehiculos.mvc.modelo.dominio.Cliente;
 import alquilervehiculos.mvc.modelo.dominio.DireccionPostal;
 import alquilervehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
+import alquilervehiculos.mvc.modelo.dominio.vehiculo.DatosTecnicosVehiculo;
 import alquilervehiculos.mvc.modelo.dominio.vehiculo.Vehiculo;
 import alquilervehiculos.mvc.vista.Opcion;
 
@@ -66,11 +67,13 @@ public class Consola {
         String marca = Entrada.cadena();
         System.out.print("Modelo: ");
         String modelo = Entrada.cadena();
-        System.out.print("Color: ");
-        String color = Entrada.cadena();
         System.out.print("Cilindrada: ");
-        int cilindrada = Entrada.entero();
-        Vehiculo turismo = new Vehiculo(matricula, marca, modelo, cilindrada);
+        double cilindrada = Entrada.realDoble();
+        System.out.print("Número de plazas: ");
+        double numeroPlazas = Entrada.realDoble();   
+        System.out.print("PMA: ");
+        double pma = Entrada.realDoble(); 
+        Vehiculo turismo = new Vehiculo(matricula, marca, modelo, new DatosTecnicosVehiculo (cilindrada,numeroPlazas,pma));
         return turismo;
     }
 

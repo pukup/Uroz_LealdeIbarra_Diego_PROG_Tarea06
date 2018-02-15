@@ -17,16 +17,18 @@ public class Vehiculo {
 
 //Atributos clase
     private String matricula, marca, modelo;
-    private int cilindrada;
     private boolean disponible;
+    private final double FACTOR_CILINDRADA, FACTOR_NUMERO_PLAZAS, FACTOR_PMA;
 
 //Constructor        
-    public Vehiculo(String matricula, String marca, String modelo, int cilindrada) {
+    public Vehiculo(String matricula, String marca, String modelo, DatosTecnicosVehiculo datosTecnicos) {
 
+        setMatricula(matricula);
         setMarca(marca);
         setModelo(modelo);
-        setCilindrada(cilindrada);
-        setMatricula(matricula);
+        FACTOR_CILINDRADA = datosTecnicos.getCilindrada();
+        FACTOR_NUMERO_PLAZAS = datosTecnicos.getNumeroPlazas();
+        FACTOR_PMA = datosTecnicos.getPma();
         setDisponible(true);
 
     }
@@ -34,10 +36,12 @@ public class Vehiculo {
 //Constructor copia    
     public Vehiculo(Vehiculo turismoCopia) {
 
+        matricula = turismoCopia.getMatricula();
         marca = turismoCopia.getMarca();
         modelo = turismoCopia.getModelo();
-        cilindrada = turismoCopia.getCilindrada();
-        matricula = turismoCopia.getMatricula();
+        FACTOR_CILINDRADA = turismoCopia.getFACTOR_CILINDRADA();
+        FACTOR_NUMERO_PLAZAS = turismoCopia.getFACTOR_NUMERO_PLAZAS();
+        FACTOR_PMA = turismoCopia.getFACTOR_PMA();
         disponible = turismoCopia.getDisponible();
 
     }
@@ -59,14 +63,6 @@ public class Vehiculo {
         }
     }
 
-    private void setCilindrada(int cilindrada1) {
-        if (cilindrada1 > 0) {
-            this.cilindrada = cilindrada1;
-        } else {
-            throw new ExcepcionAlquilerVehiculos("Cilindrada incorrecta.");
-        }
-    }
-
     private void setMatricula(String matricula1) {
         if (compruebaMatricula(matricula1)) {
             this.matricula = matricula1;
@@ -74,9 +70,30 @@ public class Vehiculo {
             throw new ExcepcionAlquilerVehiculos("Matrícula incorrecta.");
         }
     }
-    
+
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
+    }
+
+    /**
+     * @return the FACTOR_CILINDRADA
+     */
+    public double getFACTOR_CILINDRADA() {
+        return FACTOR_CILINDRADA;
+    }
+
+    /**
+     * @return the FACTOR_NUMERO_PLAZAS
+     */
+    public double getFACTOR_NUMERO_PLAZAS() {
+        return FACTOR_NUMERO_PLAZAS;
+    }
+
+    /**
+     * @return the FACTOR_PMA
+     */
+    public double getFACTOR_PMA() {
+        return FACTOR_PMA;
     }
 
 //Métodos get
@@ -88,10 +105,6 @@ public class Vehiculo {
         return modelo;
     }
 
-    public int getCilindrada() {
-        return cilindrada;
-    }
-
     public String getMatricula() {
         return matricula;
     }
@@ -100,9 +113,13 @@ public class Vehiculo {
         return disponible;
     }
 
+    public DatosTecnicosVehiculo getDatosTecnicos() {
+        return new DatosTecnicosVehiculo(FACTOR_CILINDRADA, FACTOR_NUMERO_PLAZAS, FACTOR_PMA);
+    }
+
 //Método toString    
     public String toString() {
-        return String.format("VEHICULO %s%n Marca: %s%n Modelo: %s%n Cilindrada: %d%n Disponible: %b%n", matricula, marca, modelo, cilindrada, disponible);
+        return String.format("VEHICULO %s%n Marca: %s%n Modelo: %s%n  %d%n Disponible: %b%n", matricula, marca, modelo, getDatosTecnicos().toString(), disponible);
     }
 
 //Método validación    

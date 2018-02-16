@@ -6,22 +6,21 @@
 package alquilervehiculos.mvc.modelo.dominio.vehiculo;
 
 import alquilervehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.*;
 
 /**
  *
  * @author lol
  */
-public class Vehiculo {
+public abstract class Vehiculo {
 
 //Atributos clase
     private String matricula, marca, modelo;
     private DatosTecnicosVehiculo datosTecnicos;
     private boolean disponible;
-    private final double FACTOR_CILINDRADA = 50;
-    private final double FACTOR_NUMERO_PLAZAS = 1;
-    private final double FACTOR_PMA = 20;
+    protected final double FACTOR_CILINDRADA = 50;
+    protected final double FACTOR_NUMERO_PLAZAS = 1;
+    protected final double FACTOR_PMA = 20;
 
     
     
@@ -34,6 +33,10 @@ public class Vehiculo {
         this.datosTecnicos = datosTecnicos;
         setDisponible(true);
     }
+
+    public abstract TipoVehiculo getTipoVehiculo();
+
+    public abstract double getPrecioEspecifico();
 
 //Constructor copia    
     public Vehiculo(Vehiculo turismoCopia) {
@@ -75,23 +78,17 @@ public class Vehiculo {
         this.disponible = disponible;
     }
 
-    /**
-     * @return the FACTOR_CILINDRADA
-     */
+
     public double getFACTOR_CILINDRADA() {
         return FACTOR_CILINDRADA;
     }
 
-    /**
-     * @return the FACTOR_NUMERO_PLAZAS
-     */
+    
     public double getFACTOR_NUMERO_PLAZAS() {
         return FACTOR_NUMERO_PLAZAS;
     }
 
-    /**
-     * @return the FACTOR_PMA
-     */
+
     public double getFACTOR_PMA() {
         return FACTOR_PMA;
     }

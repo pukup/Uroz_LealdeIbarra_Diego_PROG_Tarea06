@@ -15,16 +15,19 @@ import static alquilervehiculos.mvc.modelo.dominio.vehiculo.TipoVehiculo.values;
 public enum TipoVehiculo {
 
     TURISMO("Turismo") {
-        public Turismo getInstancia(Vehiculo vehiculo);
-        return new Turismo(vehiculo);
+        public Turismo getInstancia(Vehiculo vehiculo) {
+            return new Turismo(vehiculo);
+        }
     },
     DE_CARGA("De carga") {
-        public DeCarga getInstancia(Vehiculo vehiculo);
-        return new Vehiculo(vehiculo);
+        public DeCarga getInstancia(Vehiculo vehiculo) {
+            return new DeCarga(vehiculo)
+        }
     },
     AUTOBUS("Autobus") {
-        public Autobus getInstancia(Vehiculo vehiculo);
-        return new Vehiculo(vehiculo);
+        public Autobus getInstancia(Vehiculo vehiculo) {
+            return new Autobus(vehiculo)
+        }
     };
 
     private String tipoVehiculo;
@@ -38,17 +41,17 @@ public enum TipoVehiculo {
     public String toString() {
         return tipoVehiculo;
     }
-    
-    public static TipoVehiculo getTipoVehiculoSegunOrdinal(int ordinal){
-        if  (ordinalValido(ordinal)){
+
+    public static TipoVehiculo getTipoVehiculoSegunOrdinal(int ordinal) {
+        if (ordinalValido(ordinal)) {
             return values()[ordinal];
         } else {
-            throw new ExcepcionAlquilerVehiculos ("Tipo de vehículo inexsistente.");
+            throw new ExcepcionAlquilerVehiculos("Tipo de vehículo inexsistente.");
         }
     }
-    
-    private static boolean ordinalValido(int ordinal){
-        return (ordinal>=0 && ordinal <= values().length - 1);
-      
+
+    private static boolean ordinalValido(int ordinal) {
+        return (ordinal >= 0 && ordinal <= values().length - 1);
+
     }
 }

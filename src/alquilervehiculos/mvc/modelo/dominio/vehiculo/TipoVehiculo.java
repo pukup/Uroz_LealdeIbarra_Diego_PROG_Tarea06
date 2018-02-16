@@ -21,12 +21,12 @@ public enum TipoVehiculo {
     },
     DE_CARGA("De carga") {
         public DeCarga getInstancia(Vehiculo vehiculo) {
-            return new DeCarga(vehiculo)
+            return new DeCarga(vehiculo);
         }
     },
     AUTOBUS("Autobus") {
         public Autobus getInstancia(Vehiculo vehiculo) {
-            return new Autobus(vehiculo)
+            return new Autobus(vehiculo);
         }
     };
 
@@ -50,7 +50,7 @@ public enum TipoVehiculo {
         }
     }
 
-    private static boolean ordinalValido(int ordinal) {
+    public static boolean ordinalValido(int ordinal) {
         return (ordinal >= 0 && ordinal <= values().length - 1);
 
     }

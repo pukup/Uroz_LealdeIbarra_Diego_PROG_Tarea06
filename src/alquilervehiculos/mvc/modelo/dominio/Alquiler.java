@@ -22,14 +22,14 @@ public class Alquiler {
     private final SimpleDateFormat FORMATO_FECHA = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     private final int MS_DIA = 1000 * 60 * 60 * 24;
     private final double PRECIO_DIA = 30;
-    private Vehiculo turismo;
+    private Vehiculo vehiculo;
     private Cliente cliente;
 
 //Constructor    
-    public Alquiler(Cliente cliente, Vehiculo turismo) {
-        if (turismo.getDisponible()) {
+    public Alquiler(Cliente cliente, Vehiculo vehiculo) {
+        if (this.vehiculo.getDisponible()) {
             alquilerAbierto = true;
-            setTurismo(turismo);
+            setVehiculo(this.vehiculo);
             setCliente(cliente);
             fecha = new Date();
             dias = 0;               
@@ -40,17 +40,17 @@ public class Alquiler {
 
 //Constructor copia
     public Alquiler(Alquiler alquilerCopia) {
-        turismo = alquilerCopia.getTurismo();
+        vehiculo = alquilerCopia.getVehiculo();
         cliente = alquilerCopia.getCliente();
         dias = alquilerCopia.getDias();
         fecha = alquilerCopia.getDate();
         
     }
 
-    private void setTurismo(Vehiculo turismo) {
-        if (turismo != null) {
-            this.turismo = turismo;
-            turismo.setDisponible(false);
+    private void setVehiculo(Vehiculo vehiculo) {
+        if (vehiculo != null) {
+            this.vehiculo = vehiculo;
+            vehiculo.setDisponible(false);
         } else {
             throw new ExcepcionAlquilerVehiculos("Error turismo.");
         }
@@ -73,8 +73,8 @@ public class Alquiler {
         return difDias();
     }
 
-    public Vehiculo getTurismo() {
-        return new Vehiculo(turismo);
+    public Vehiculo getVehiculo() {
+        return vehiculo;
     }
 
     public double getPrecioDia() {
@@ -86,7 +86,7 @@ public class Alquiler {
     }
 
     public double getPrecio() {
-        return PRECIO_DIA * difDias() + turismo.getDatosTecnicos().getCilindrada() / 100;
+        return PRECIO_DIA * difDias() + vehiculo.getDatosTecnicos().getCilindrada() / 100;
     }
 
     public double getPrecio(Vehiculo turismo, int dias) {
@@ -100,14 +100,14 @@ public class Alquiler {
 
 //Método toString    
     public String toString() {
-        return String.format("ALQUILER %s%n Fecha inicio: %s%n Días: %d%n Turismo: %s%n Cliente: %s%n Precio: %f€%n", getEstadoAlquiler(), fecha.toString(), getDias(), turismo.getMatricula(), cliente.getDni(), getPrecio());
+        return String.format("ALQUILER %s%n Fecha inicio: %s%n Días: %d%n Turismo: %s%n Cliente: %s%n Precio: %f€%n", getEstadoAlquiler(), fecha.toString(), getDias(), vehiculo.getMatricula(), cliente.getDni(), getPrecio());
     }
 
 //Método cerrar alquiler   
     public void close() {         
         if (dias == 0) {
             dias = difDias();
-            turismo.setDisponible(true);
+            vehiculo.setDisponible(true);
             alquilerAbierto = false;
         } else {
             throw new ExcepcionAlquilerVehiculos("El alquiler está cerrado");

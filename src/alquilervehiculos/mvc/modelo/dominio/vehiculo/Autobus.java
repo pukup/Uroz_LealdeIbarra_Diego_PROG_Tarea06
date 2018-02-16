@@ -9,21 +9,21 @@ package alquilervehiculos.mvc.modelo.dominio.vehiculo;
  *
  * @author lol
  */
-public class Turismo extends Vehiculo {
+public class Autobus extends Vehiculo {
     
-    public Turismo(String matricula, String marca, String modelo, int cilindrada, int numeroPlazas, int pma) {
+    public Autobus(String matricula, String marca, String modelo, int cilindrada, int numeroPlazas, int pma) {
         super(matricula, marca, modelo, new DatosTecnicosVehiculo(cilindrada, numeroPlazas, pma));
     }
 
-    public Turismo(Vehiculo vehiculo) {
+    public Autobus(Vehiculo vehiculo) {
         super(vehiculo);
     }
     
     public TipoVehiculo getTipoVehiculo(){
-        return TipoVehiculo.TURISMO;
+        return TipoVehiculo.AUTOBUS;
     }
     
     public double getPrecioEspecifico(){
-        return getDatosTecnicos().getCilindrada() / FACTOR_CILINDRADA + 1 * getDatosTecnicos().getNumeroPlazas();
+        return getDatosTecnicos().getPma() / FACTOR_PMA;
     }
 }

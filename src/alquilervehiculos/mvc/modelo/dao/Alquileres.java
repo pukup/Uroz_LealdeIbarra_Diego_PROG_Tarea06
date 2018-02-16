@@ -42,7 +42,7 @@ public class Alquileres {
         while (indiceNoSuperaTamano(indice) && !trabajoEncontrado) {
             if (alquileres[indice] == null) {
                 trabajoEncontrado = true;
-            } else if (alquileres[indice].getTurismo().getMatricula().equals(turismo.getMatricula()) && !alquileres[indice].getTurismo().getDisponible()) {
+            } else if (alquileres[indice].getVehiculo().getMatricula().equals(turismo.getMatricula()) && !alquileres[indice].getVehiculo().getDisponible()) {
                 throw new ExcepcionAlquilerVehiculos("Vehículo no disponible.");
             } else {
                 indice++;
@@ -68,7 +68,7 @@ public class Alquileres {
         int indice = 0;
         boolean alquilerEncontrado = false;
         while (indiceNoSuperaTamano(indice) && !alquilerEncontrado) {
-            if (alquileres[indice] != null && alquileres[indice].getTurismo().getMatricula().equals(turismo.getMatricula()) && !alquileres[indice].getTurismo().getDisponible()) {
+            if (alquileres[indice] != null && alquileres[indice].getVehiculo().getMatricula().equals(turismo.getMatricula()) && !alquileres[indice].getVehiculo().getDisponible()) {
                 alquilerEncontrado = true;
             } else {
                 indice++;

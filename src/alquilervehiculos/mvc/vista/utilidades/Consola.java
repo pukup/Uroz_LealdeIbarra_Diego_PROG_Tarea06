@@ -9,6 +9,8 @@ import alquilervehiculos.mvc.modelo.dominio.Cliente;
 import alquilervehiculos.mvc.modelo.dominio.DireccionPostal;
 import alquilervehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 import alquilervehiculos.mvc.modelo.dominio.vehiculo.DatosTecnicosVehiculo;
+import alquilervehiculos.mvc.modelo.dominio.vehiculo.TipoVehiculo;
+import alquilervehiculos.mvc.modelo.dominio.vehiculo.Turismo;
 import alquilervehiculos.mvc.modelo.dominio.vehiculo.Vehiculo;
 import alquilervehiculos.mvc.vista.Opcion;
 
@@ -61,6 +63,7 @@ public class Consola {
     }
 
     public static Vehiculo leerTurismo() {
+        int ordinalTipoVehiculo = elegirTipoVehiculo();        
         System.out.print("Matrícula: ");
         String matricula = Entrada.cadena();
         System.out.print("Marca: ");
@@ -70,11 +73,27 @@ public class Consola {
         System.out.print("Cilindrada: ");
         int cilindrada = Entrada.entero();
         System.out.print("Número de plazas: ");
-        int numeroPlazas = Entrada.entero();   
+        int numeroPlazas = Entrada.entero();
         System.out.print("PMA: ");
-        int pma = Entrada.entero(); 
-        Vehiculo turismo = new Vehiculo(matricula, marca, modelo, new DatosTecnicosVehiculo (cilindrada,numeroPlazas,pma));
-        return turismo;
+        int pma = Entrada.entero();
+        Vehiculo vehiculo = TipoVehiculo.
+    }
+
+    private static int elegirTipoVehiculo() {
+        int ordinalTipoVehiculo;
+        do {
+            System.out.printf("Tipo vehículo: %s", obtenerTiposVehiculo());
+            ordinalTipoVehiculo = Entrada.entero();
+        } while (!TipoVehiculo.ordinalValido(ordinalTipoVehiculo));
+        return ordinalTipoVehiculo;
+    }
+
+    private static String obtenerTiposVehiculo() {
+        StringBuilder TiposVehiculos = new StringBuilder("");
+        for (TipoVehiculo tipoVechiculo : TipoVehiculo.values()) {
+            TiposVehiculos.append(tipoVechiculo.ordinal()).append(".- ").append(tipoVechiculo).append(" ");
+        }
+        return TiposVehiculos.toString();
     }
 
     public static String leerMatricula() {

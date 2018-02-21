@@ -6,7 +6,7 @@
 package alquilervehiculos.aplicacion;
 
 import alquilervehiculos.mvc.controlador.ControladorAlquilerTurismos;
-import alquilervehiculos.mvc.modelo.AlquilerVehiculos;
+import alquilervehiculos.mvc.modelo.ModeloAlquilerVehiculos;
 import alquilervehiculos.mvc.modelo.dominio.Cliente;
 import alquilervehiculos.mvc.modelo.dominio.DireccionPostal;
 import alquilervehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
@@ -21,7 +21,7 @@ public class Principal {
 
     public static void main(String[] args) {
 
-        AlquilerVehiculos modelo = new AlquilerVehiculos();
+        ModeloAlquilerVehiculos modelo = new ModeloAlquilerVehiculos();
         IUTextual vista = new IUTextual();
         ControladorAlquilerTurismos controlador = new ControladorAlquilerTurismos(modelo, vista);
 

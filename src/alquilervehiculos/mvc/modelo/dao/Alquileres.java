@@ -27,23 +27,33 @@ public class Alquileres {
         return alquileres.clone();
     }
 
-    public void abrir(Cliente cliente, Vehiculo turismo) {
-        int indice = buscarPrimerIndiceLibreComprobandoExistenciaOtroAbierto(turismo);
+    public void abrir(Cliente cliente, Vehiculo vehiculo) {
+        int indice = buscarPrimerIndiceLibreComprobandoExistenciaOtroAbierto(vehiculo);
         if (indiceNoSuperaTamano(indice)) {
-            alquileres[indice] = new Alquiler(cliente, turismo);
+            alquileres[indice] = new Alquiler(cliente, vehiculo);
         } else {
             throw new ExcepcionAlquilerVehiculos("No hay espacio disponible.");
         }
     }
 
-    private int buscarPrimerIndiceLibreComprobandoExistenciaOtroAbierto(Vehiculo turismo) {
+    public void cerrar(Vehiculo vehiculo) {
+        int indice = buscarAlquilerAbierto(vehiculo);
+        if (indiceNoSuperaTamano(indice)) {
+            alquileres[indice].close();
+        } else {
+            throw new ExcepcionAlquilerVehiculos("Alquiler no encontrado.");
+        }
+    }
+
+    private int buscarPrimerIndiceLibreComprobandoExistenciaOtroAbierto(Vehiculo vehiculo) {
         int indice = 0;
-        boolean trabajoEncontrado = false;
-        while (indiceNoSuperaTamano(indice) && !trabajoEncontrado) {
+        boolean espacioEncontrado = false;
+        while (indiceNoSuperaTamano(indice) && !espacioEncontrado) {
             if (alquileres[indice] == null) {
-                trabajoEncontrado = true;
-            } else if (alquileres[indice].getVehiculo().getMatricula().equals(turismo.getMatricula()) && !alquileres[indice].getVehiculo().getDisponible()) {
-                throw new ExcepcionAlquilerVehiculos("Vehículo no disponible.");
+                espacioEncontrado = true;
+            } else if (alquileres[indice].getVehiculo().getMatricula().equals(vehiculo.getMatricula())
+                    && !alquileres[indice].getVehiculo().getDisponible()) {
+                throw new ExcepcionAlquilerVehiculos("Ya existe un trabajo abierto para este vehículo");
             } else {
                 indice++;
             }
@@ -55,20 +65,11 @@ public class Alquileres {
         return indice < alquileres.length;
     }
 
-    public void cerrar(Vehiculo turismo) {
-        int indice = buscarAlquilerAbierto(turismo);
-        if (indiceNoSuperaTamano(indice)) {
-            alquileres[indice].close();
-        } else {
-            throw new ExcepcionAlquilerVehiculos("Alquiler no encontrado.");
-        }
-    }
-
-    public int buscarAlquilerAbierto(Vehiculo turismo) {
+    public int buscarAlquilerAbierto(Vehiculo vehiculo) {
         int indice = 0;
         boolean alquilerEncontrado = false;
         while (indiceNoSuperaTamano(indice) && !alquilerEncontrado) {
-            if (alquileres[indice] != null && alquileres[indice].getVehiculo().getMatricula().equals(turismo.getMatricula()) && !alquileres[indice].getVehiculo().getDisponible()) {
+            if (alquileres[indice] != null && alquileres[indice].getVehiculo().getMatricula().equals(vehiculo.getMatricula()) && !alquileres[indice].getVehiculo().getDisponible()) {
                 alquilerEncontrado = true;
             } else {
                 indice++;

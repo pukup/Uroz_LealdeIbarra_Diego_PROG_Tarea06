@@ -15,6 +15,10 @@ public class Turismo extends Vehiculo {
         super(matricula, marca, modelo, new DatosTecnicosVehiculo(cilindrada, numeroPlazas, pma));
     }
 
+    public Turismo(String matricula, String marca, String modelo, DatosTecnicosVehiculo datosTecnicos) {
+        super(matricula, marca, modelo, datosTecnicos);
+    }
+
     public Turismo(Vehiculo vehiculo) {
         super(vehiculo);
     }
@@ -26,4 +30,5 @@ public class Turismo extends Vehiculo {
     public double getPrecioEspecifico(){
         return getDatosTecnicos().getCilindrada() / FACTOR_CILINDRADA + 1 * getDatosTecnicos().getNumeroPlazas();
     }
+    
 }

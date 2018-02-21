@@ -40,22 +40,22 @@ public enum Opcion {
     },
     ANADIR_VEHICULO("Añadir vehículo") {
         public void ejecutar() {
-            vista.anadirTurismo();
+            vista.anadirVehiculo();
         }
     },
     BORRAR_VEHICULO("Borrar vehículo") {
         public void ejecutar() {
-            vista.borrarTurismo();
+            vista.borrarVehiculo();
         }
     },
     BUSCAR_VEHICULO("Buscar vehículo") {
         public void ejecutar() {
-            vista.buscarTurismo();
+            vista.buscarVehiculo();
         }
     },
     LISTAR_VEHICULOS("Listar vehículos") {
         public void ejecutar() {
-            vista.listarTurismos();
+            vista.listarVehiculos();
         }
     },
     ABRIR_TRABAJO("Abrir alquiler") {

@@ -66,6 +66,6 @@ public class DatosTecnicosVehiculo {
     }
     
     public String toString(){
-        return String.format("Cilindrada: %s%n Número de plazas: %s%n PMA: %s%n", cilindrada, numeroPlazas, pma);
+        return String.format("Cilindrada: %s%n Número de plazas: %s%n PMA: %s", cilindrada, numeroPlazas, pma);
     }
 }

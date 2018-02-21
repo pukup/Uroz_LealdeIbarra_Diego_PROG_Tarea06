@@ -113,10 +113,16 @@ public abstract class Vehiculo {
     public DatosTecnicosVehiculo getDatosTecnicos() {
         return new DatosTecnicosVehiculo(datosTecnicos);
     }
+    
+    public String getTipoMatricula(){
+        return String.format("%s: %s%n", getTipoVehiculo().toString(), getMatricula());
+    }
+    
+
 
 //Método toString    
     public String toString() {
-        return String.format("VEHICULO %s%n Marca: %s%n Modelo: %s%n  %s%n Disponible: %b%n", matricula, marca, modelo, datosTecnicos, disponible);
+        return String.format("%s %s%n Marca: %s%n Modelo: %s%n %s%n Disponible: %b%n", getTipoVehiculo(), matricula, marca, modelo, datosTecnicos, disponible);
     }
 
 //Método validación    

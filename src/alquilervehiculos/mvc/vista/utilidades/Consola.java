@@ -7,8 +7,9 @@ package alquilervehiculos.mvc.vista.utilidades;
 
 import alquilervehiculos.mvc.modelo.dominio.Cliente;
 import alquilervehiculos.mvc.modelo.dominio.DireccionPostal;
-import alquilervehiculos.mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
+import alquilervehiculos.mvc.modelo.dominio.vehiculo.Autobus;
 import alquilervehiculos.mvc.modelo.dominio.vehiculo.DatosTecnicosVehiculo;
+import alquilervehiculos.mvc.modelo.dominio.vehiculo.DeCarga;
 import alquilervehiculos.mvc.modelo.dominio.vehiculo.TipoVehiculo;
 import alquilervehiculos.mvc.modelo.dominio.vehiculo.Turismo;
 import alquilervehiculos.mvc.modelo.dominio.vehiculo.Vehiculo;
@@ -62,8 +63,9 @@ public class Consola {
         return dni;
     }
 
-    public static Vehiculo leerTurismo() {
-        int ordinalTipoVehiculo = elegirTipoVehiculo();        
+    public static Vehiculo leerVehiculo() {
+        Vehiculo vehiculo = null;
+        int ordinalTipoVehiculo = elegirTipoVehiculo();
         System.out.print("Matrícula: ");
         String matricula = Entrada.cadena();
         System.out.print("Marca: ");
@@ -76,7 +78,8 @@ public class Consola {
         int numeroPlazas = Entrada.entero();
         System.out.print("PMA: ");
         int pma = Entrada.entero();
-        Vehiculo vehiculo = TipoVehiculo.
+        vehiculo = TipoVehiculo.getTipoVehiculoSegunOrdinal(ordinalTipoVehiculo).getInstancia(matricula, marca, modelo, new DatosTecnicosVehiculo(cilindrada, numeroPlazas, pma));
+        return vehiculo;
     }
 
     private static int elegirTipoVehiculo() {

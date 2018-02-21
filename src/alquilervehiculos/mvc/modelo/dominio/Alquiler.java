@@ -27,9 +27,9 @@ public class Alquiler {
 
 //Constructor    
     public Alquiler(Cliente cliente, Vehiculo vehiculo) {
-        if (this.vehiculo.getDisponible()) {
+        if (vehiculo.getDisponible()) {
             alquilerAbierto = true;
-            setVehiculo(this.vehiculo);
+            setVehiculo(vehiculo);
             setCliente(cliente);
             fecha = new Date();
             dias = 0;               
@@ -86,7 +86,7 @@ public class Alquiler {
     }
 
     public double getPrecio() {
-        return PRECIO_DIA * difDias() + vehiculo.getDatosTecnicos().getCilindrada() / 100;
+        return PRECIO_DIA * difDias() + vehiculo.getPrecioEspecifico();
     }
 
     public double getPrecio(Vehiculo turismo, int dias) {
@@ -100,7 +100,7 @@ public class Alquiler {
 
 //Método toString    
     public String toString() {
-        return String.format("ALQUILER %s%n Fecha inicio: %s%n Días: %d%n Turismo: %s%n Cliente: %s%n Precio: %f€%n", getEstadoAlquiler(), fecha.toString(), getDias(), vehiculo.getMatricula(), cliente.getDni(), getPrecio());
+        return String.format("ALQUILER %s%n Fecha inicio: %s%n Días: %d%n %s Cliente: %s%n Precio: %f€%n", getEstadoAlquiler(), fecha.toString(), getDias(), vehiculo.getTipoMatricula(), cliente.getDni(), getPrecio());
     }
 
 //Método cerrar alquiler   

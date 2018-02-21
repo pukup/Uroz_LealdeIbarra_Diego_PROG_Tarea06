@@ -67,10 +67,14 @@ public class IUTextual {
 
     public void buscarCliente() {
         Consola.mostrarCabecera("Buscar cliente.");
-        String dni = Consola.leerDni();
-        Cliente cliente = controlador.buscarCliente(dni);
-        String mensaje = (cliente != null) ? cliente.toString() : "Cliente no encontrado.";
-        System.out.printf("%n%n%s", mensaje);
+        try {
+            String dni = Consola.leerDni();
+            Cliente cliente = controlador.buscarCliente(dni);
+            String mensaje = (cliente != null) ? cliente.toString() : "Cliente no encontrado.";
+            System.out.printf("%n%s%n", mensaje);
+        } catch (ExcepcionAlquilerVehiculos e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void listarClientes() {
@@ -83,41 +87,45 @@ public class IUTextual {
         System.out.println("");
     }
 
-    public void anadirTurismo() {
-        Consola.mostrarCabecera("Añadir turismo.");
+    public void anadirVehiculo() {
+        Consola.mostrarCabecera("Añadir vehículo.");
         try {
-            Vehiculo turismo = Consola.leerTurismo();
-            controlador.anadirTurismo(turismo);
+            Vehiculo vehiculo = Consola.leerVehiculo();
+            controlador.anadirVehiculo(vehiculo);
             System.out.println("Vehículo añadido.");
         } catch (ExcepcionAlquilerVehiculos e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public void borrarTurismo() {
-        Consola.mostrarCabecera("Borrar turismo.");
+    public void borrarVehiculo() {
+        Consola.mostrarCabecera("Borrar vehículo.");
         try {
             String matricula = Consola.leerMatricula();
-            controlador.borrarTurismo(matricula);
-            System.out.println("Turismo eliminado.");
+            controlador.borrarVehiculo(matricula);
+            System.out.println("Vehículo eliminado.");
         } catch (ExcepcionAlquilerVehiculos e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public void buscarTurismo() {
-        Consola.mostrarCabecera("Buscar turismo.");
-        String matricula = Consola.leerMatricula();
-        Vehiculo turismo = controlador.buscarTurismo(matricula);
-        String mensaje = (turismo != null) ? turismo.toString() : "Turismo no encontrado.";
-        System.out.printf("%n%n%s", mensaje);
+    public void buscarVehiculo() {
+        Consola.mostrarCabecera("Buscar vehículo.");
+        try {
+            String matricula = Consola.leerMatricula();
+            Vehiculo vehiculo = controlador.buscarVehiculo(matricula);
+            String mensaje = (vehiculo != null) ? vehiculo.toString() : "Turismo no encontrado.";
+            System.out.printf("%n%s%n", mensaje);
+        } catch (ExcepcionAlquilerVehiculos e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    public void listarTurismos() {
-        Consola.mostrarCabecera("Listado de turismos.");
-        for (Vehiculo turismo : controlador.obtenerTurismos()) {
-            if (turismo != null) {
-                System.out.println(turismo);
+    public void listarVehiculos() {
+        Consola.mostrarCabecera("Listado de Vehículos.");
+        for (Vehiculo vehiculo : controlador.obtenerTurismos()) {
+            if (vehiculo != null) {
+                System.out.println(vehiculo);
             }
         }
         System.out.println("");
@@ -128,9 +136,10 @@ public class IUTextual {
         try {
             String matricula = Consola.leerMatricula();
             String dni = Consola.leerDni();
-            Vehiculo turismo = controlador.buscarTurismo(matricula);
+            Vehiculo vehiculo = controlador.buscarVehiculo(matricula);
             Cliente cliente = controlador.buscarCliente(dni);
-            Alquiler alquiler = new Alquiler(cliente, turismo);
+            controlador.abrirAlquiler(cliente, vehiculo);
+            System.out.println("Alquiler abierto.");
         } catch (ExcepcionAlquilerVehiculos e) {
             System.out.println(e.getMessage());
         }
@@ -141,8 +150,9 @@ public class IUTextual {
         Consola.mostrarCabecera("Cerrar alquiler.");
         try {
             String matricula = Consola.leerMatricula();
-            Vehiculo turismo = controlador.buscarTurismo(matricula);
-            controlador.cerrarAlquiler(turismo);
+            Vehiculo vehiculo = controlador.buscarVehiculo(matricula);
+            controlador.cerrarAlquiler(vehiculo);
+            System.out.println("Alquiler cerrado.");
         } catch (ExcepcionAlquilerVehiculos e) {
             System.out.println(e.getMessage());
         }

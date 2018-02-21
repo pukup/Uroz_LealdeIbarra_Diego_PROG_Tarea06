@@ -15,19 +15,28 @@ import static alquilervehiculos.mvc.modelo.dominio.vehiculo.TipoVehiculo.values;
 public enum TipoVehiculo {
 
     TURISMO("Turismo") {
-        public Turismo getInstancia(Vehiculo vehiculo) {
-            return new Turismo(vehiculo);
+
+        public Turismo getInstancia(String matricula, String marca, String modelo,
+                DatosTecnicosVehiculo datosTecnicos) {
+            return new Turismo(matricula, marca, modelo, datosTecnicos);
         }
+
     },
-    DE_CARGA("De carga") {
-        public DeCarga getInstancia(Vehiculo vehiculo) {
-            return new DeCarga(vehiculo);
+    DE_CARGA("DeCarga") {
+
+        public DeCarga getInstancia(String matricula, String marca, String modelo,
+                DatosTecnicosVehiculo datosTecnicos) {
+            return new DeCarga(matricula, marca, modelo, datosTecnicos);
         }
+
     },
     AUTOBUS("Autobus") {
-        public Autobus getInstancia(Vehiculo vehiculo) {
-            return new Autobus(vehiculo);
+
+        public Autobus getInstancia(String matricula, String marca, String modelo,
+                DatosTecnicosVehiculo datosTecnicos) {
+            return new Autobus(matricula, marca, modelo, datosTecnicos);
         }
+
     };
 
     private String tipoVehiculo;
@@ -36,7 +45,7 @@ public enum TipoVehiculo {
         this.tipoVehiculo = tipoVehiculo;
     }
 
-    public abstract Vehiculo getInstancia(Vehiculo vehiculo);
+    public abstract Vehiculo getInstancia(String matricula, String marca, String modelo, DatosTecnicosVehiculo datosTecnicos);
 
     public String toString() {
         return tipoVehiculo;

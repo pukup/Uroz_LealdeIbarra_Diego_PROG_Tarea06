@@ -15,6 +15,10 @@ public class DeCarga extends Vehiculo {
         super(matricula, marca, modelo, new DatosTecnicosVehiculo(cilindrada, numeroPlazas, pma));
     }
 
+    public DeCarga(String matricula, String marca, String modelo, DatosTecnicosVehiculo datosTecnicos) {
+        super(matricula, marca, modelo, datosTecnicos);
+    }
+
     public DeCarga(Vehiculo vehiculo) {
         super(vehiculo);
     }

@@ -16,7 +16,7 @@ import alquilervehiculos.mvc.vista.utilidades.Consola;
  *
  * @author lol
  */
-public class IUTextual {
+public class IUTextual implements IVistaAlquilerVehiculos {
 
     ControladorAlquilerTurismos controlador;
 
@@ -24,10 +24,12 @@ public class IUTextual {
         Opcion.setVista(this);
     }
 
+    @Override
     public void setControlador(ControladorAlquilerTurismos controlador) {
         this.controlador = controlador;
     }
 
+    @Override
     public void comenzar() {
         int ordinalOpcion;
         do {
@@ -39,10 +41,12 @@ public class IUTextual {
 
     }
 
+    @Override
     public void salir() {
         System.out.println("Nos vemos en la tele.");
     }
 
+    @Override
     public void anadirCliente() {
         Consola.mostrarCabecera("Añadir cliente.");
         try {
@@ -54,6 +58,7 @@ public class IUTextual {
         }
     }
 
+    @Override
     public void borrarCliente() {
         Consola.mostrarCabecera("Borrar cliente.");
         try {
@@ -65,6 +70,7 @@ public class IUTextual {
         }
     }
 
+    @Override
     public void buscarCliente() {
         Consola.mostrarCabecera("Buscar cliente.");
         try {
@@ -77,6 +83,7 @@ public class IUTextual {
         }
     }
 
+    @Override
     public void listarClientes() {
         Consola.mostrarCabecera("Listado de clientes.");
         for (Cliente cliente : controlador.obtenerClientes()) {
@@ -87,6 +94,7 @@ public class IUTextual {
         System.out.println("");
     }
 
+    @Override
     public void anadirVehiculo() {
         Consola.mostrarCabecera("Añadir vehículo.");
         try {
@@ -98,6 +106,7 @@ public class IUTextual {
         }
     }
 
+    @Override
     public void borrarVehiculo() {
         Consola.mostrarCabecera("Borrar vehículo.");
         try {
@@ -109,6 +118,7 @@ public class IUTextual {
         }
     }
 
+    @Override
     public void buscarVehiculo() {
         Consola.mostrarCabecera("Buscar vehículo.");
         try {
@@ -121,6 +131,7 @@ public class IUTextual {
         }
     }
 
+    @Override
     public void listarVehiculos() {
         Consola.mostrarCabecera("Listado de Vehículos.");
         for (Vehiculo vehiculo : controlador.obtenerTurismos()) {
@@ -131,6 +142,7 @@ public class IUTextual {
         System.out.println("");
     }
 
+    @Override
     public void abrirAlquiler() {
         Consola.mostrarCabecera("Abrir alquiler.");
         try {
@@ -146,6 +158,7 @@ public class IUTextual {
 
     }
 
+    @Override
     public void cerrarAlquiler() {
         Consola.mostrarCabecera("Cerrar alquiler.");
         try {
@@ -158,6 +171,7 @@ public class IUTextual {
         }
     }
 
+    @Override
     public void listarAlquileres() {
         Consola.mostrarCabecera("Listado de alquileres.");
         for (Alquiler alquiler : controlador.obtenerAlquileres()) {

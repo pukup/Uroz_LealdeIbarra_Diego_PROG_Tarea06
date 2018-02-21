@@ -104,7 +104,7 @@ public enum Opcion {
     }
 
     public static boolean ordinalValido(int ordinal) {
-        return ordinal > 0 && ordinal <= values().length - 1;
+        return ordinal >= 0 && ordinal <= values().length - 1;
     }
     
 }

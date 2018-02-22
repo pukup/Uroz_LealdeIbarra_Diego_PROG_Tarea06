@@ -59,6 +59,7 @@ public class Alquiler {
     private void setCliente(Cliente cliente) {
         if (cliente != null) {
             this.cliente = cliente;
+            cliente.setAlquilerVigente(true);
         } else {
             throw new ExcepcionAlquilerVehiculos("Error cliente.");
         }

@@ -45,10 +45,10 @@ public class Clientes {
 
     public void borrar(String dni) {
         int indice = buscarIndiceCliente(dni);
-        if (indiceNoSuperaTamano(indice)) {
+        if (indiceNoSuperaTamano(indice) && !clientes[indice].getAlquilerVigente()) {
             desplazarUnaPosicionHaciaIzquierda(indice);
         } else {
-            throw new ExcepcionAlquilerVehiculos("El cliente a borrar no existe");
+            throw new ExcepcionAlquilerVehiculos("El cliente no puede ser eliminado.");
         }
     }
 

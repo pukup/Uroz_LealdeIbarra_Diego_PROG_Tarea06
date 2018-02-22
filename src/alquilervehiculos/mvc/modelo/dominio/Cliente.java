@@ -19,12 +19,14 @@ public class Cliente {
     private DireccionPostal direccion;
     private int identificador;
     private static int ultimoIdentificador = 0;
+    private boolean alquilerVigente;
 
 //Constructor
     public Cliente(String nombre, String dni, DireccionPostal direccion) {
         setNombre(nombre);
         setDni(dni);
         setDireccionPostal(direccion);
+        setAlquilerVigente(false);
         ultimoIdentificador++;
         identificador = ultimoIdentificador;
     }
@@ -34,6 +36,7 @@ public class Cliente {
         nombre = clienteCopia.getNombre();
         direccion = clienteCopia.getDireccion();
         dni = clienteCopia.getDni();
+        alquilerVigente=clienteCopia.getAlquilerVigente();
         identificador = clienteCopia.getIdentificador();
     }
 
@@ -57,6 +60,10 @@ public class Cliente {
     private void setDireccionPostal(DireccionPostal direccion) {        
             this.direccion = new DireccionPostal(direccion);       
     }
+    
+    public void setAlquilerVigente(boolean alquilerVigente){
+        this.alquilerVigente=alquilerVigente;
+    }
 
 //Métodos get   
     public String getNombre() {
@@ -78,10 +85,14 @@ public class Cliente {
     public int getUltimoIdentificador() {
         return ultimoIdentificador;
     }
+    
+    public boolean getAlquilerVigente(){
+        return alquilerVigente;
+    }
 
 //Método toString    
     public String toString() {
-        return String.format("CLIENTE %s%n Nombre: %s%n Dni: %s%n %s", identificador, nombre, dni, direccion);
+        return String.format("CLIENTE %s%n Nombre: %s%n Dni: %s%n Alquiler abierto: %s%n %s ", identificador, nombre, dni, alquilerVigente, direccion);
     }
 
 //Métodos de validación    
